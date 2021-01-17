@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Goal
+  - Star
+  - Moving Platform
+  - Bounce Pad
+  - Fixed Foreground
+  - Drawing Tilemap
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Tim
+  - Boundary
+  - Input
+  - Hazards
+  - Interactables
+  - Bounce Pad
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1812471045
+    locked: 0
+  - name: Path
+    uniqueID: 2139347155
+    locked: 0
+  - name: Ground
+    uniqueID: 2554650301
+    locked: 0
+  - name: Valid Area Marking
+    uniqueID: 2133578545
+    locked: 0
+  - name: Tim
+    uniqueID: 2658515621
+    locked: 0
+  - name: Boundary
+    uniqueID: 4157563179
+    locked: 0
+  - name: Hazards
+    uniqueID: 3271297353
+    locked: 0
+  - name: Interactables
+    uniqueID: 2173388871
+    locked: 0
