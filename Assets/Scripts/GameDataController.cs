@@ -10,12 +10,11 @@ public class GameDataController : MonoBehaviour
     private bool tumUnlockedStatus = false;
     private bool alternateUnlockedStatus = false;
 
-    private int totalNormalStars;
-    private int totalAlternateStars;
+    public int[] normalStarsCollected, alternateStarsCollected;
 
     private const int NUMBER_OF_LEVELS = 20;
-    private const int TUM_UNLOCK_LEVEL = 10;
-    private const int ALTERNATE_UNLOCK_LEVEL = 5;
+    private const int TUM_UNLOCK_STARS = 10;
+    private const int ALTERNATE_UNLOCK_STARS = 10;
 
     void Awake()
     {
@@ -38,16 +37,17 @@ public class GameDataController : MonoBehaviour
 
     private void SaveData()
     {        
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/Save.sav");
-            GameData gameData = new GameData();
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/Save.sav");
+        GameData gameData = new GameData
+        {
+            levelsUnlocked = levelsUnlocked,
+            tumUnlockedStatus = tumUnlockedStatus,
+            alternateUnlockedStatus = alternateUnlockedStatus
+        };
 
-            gameData.levelsUnlocked = levelsUnlocked;
-            gameData.tumUnlockedStatus = tumUnlockedStatus;
-            gameData.alternateUnlockedStatus = alternateUnlockedStatus;
-
-            bf.Serialize(file, gameData);
-            file.Close();                
+        bf.Serialize(file, gameData);
+        file.Close();                
     }
 
     public void LoadData()
@@ -76,8 +76,8 @@ public class GameDataController : MonoBehaviour
         if(completedLevel == levelsUnlocked)
         {
             levelsUnlocked++;
-            if (levelsUnlocked == TUM_UNLOCK_LEVEL) tumUnlockedStatus = true;
-            if (levelsUnlocked == ALTERNATE_UNLOCK_LEVEL) alternateUnlockedStatus = true;
+            if (levelsUnlocked == TUM_UNLOCK_STARS) tumUnlockedStatus = true;
+            if (levelsUnlocked == ALTERNATE_UNLOCK_STARS) alternateUnlockedStatus = true;
             SaveData();
         }
     }
