@@ -14,7 +14,7 @@ public class GameDataController : MonoBehaviour
     private int totalAlternateStars;
 
     private const int NUMBER_OF_LEVELS = 20;
-    private const int TUM_UNLOCK_LEVEL = 10;
+    private const int TUM_UNLOCK_LEVEL = 30;
     private const int ALTERNATE_UNLOCK_LEVEL = 5;
 
     void Awake()
