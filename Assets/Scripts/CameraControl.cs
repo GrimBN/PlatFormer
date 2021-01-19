@@ -9,7 +9,7 @@ public class CameraControl : MonoBehaviour
     TilePlacer tilePlacer;
     Touch touch1, touch2;
     float maxX, maxY, minX, minY, distance, maxSize, cameraSpeedZoomRatio, cameraInitialSize;
-    [SerializeField] float cameraSpeed, zoomSpeed = 0.2f, minCameraSpeedRatio = 0.2f, minSize = 1;
+    [SerializeField] float cameraSpeed, zoomSpeed = 0.2f, minCameraSpeedRatio = 0.2f, minSize = 1, mouseZoomSpeed = 0.5f, keyboardZoomSpeed = 0.1f, pcCameraSpeed = 0.2f;
 
     CinemachineVirtualCamera vCam;
     [SerializeField] CinemachineVirtualCamera playingCam;
@@ -19,6 +19,7 @@ public class CameraControl : MonoBehaviour
 
     void Start()
     {
+        Input.simulateMouseWithTouches = false;
         tilePlacer = FindObjectOfType<TilePlacer>();
         vCam = GetComponent<CinemachineVirtualCamera>();        
         confiner = GetComponent<CinemachineConfiner>();
@@ -94,9 +95,21 @@ public class CameraControl : MonoBehaviour
         }
 
         //placeholder pc controls
+
+        if(Input.GetMouseButton(1))
+        {
+            float xPosDelta = Input.GetAxis("Mouse X") * vCam.m_Lens.OrthographicSize / maxSize;
+            float yPosDelta = Input.GetAxis("Mouse Y") * vCam.m_Lens.OrthographicSize / maxSize;
+            Vector3 newPos = new Vector3(transform.position.x - xPosDelta, transform.position.y - yPosDelta, transform.position.z);
+            if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
+            {
+                transform.position = new Vector3(newPos.x, newPos.y, -10);
+            }
+        }        
+
         if (Input.GetButton("Vertical"))
         {
-            Vector3 newPos = new Vector3(transform.position.x, cameraSpeed * Input.GetAxisRaw("Vertical") * 10 + transform.position.y, transform.position.z);
+            Vector3 newPos = new Vector3(transform.position.x, pcCameraSpeed * Input.GetAxisRaw("Vertical") + transform.position.y, transform.position.z);
             if (vCam != null && confiner != null)
             {
                 if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
@@ -105,9 +118,10 @@ public class CameraControl : MonoBehaviour
                 }
             }
         }
+
         if (Input.GetButton("Horizontal"))
         {
-            Vector3 newPos = new Vector3(cameraSpeed * Input.GetAxisRaw("Horizontal") * 10 + transform.position.x, transform.position.y, transform.position.z);
+            Vector3 newPos = new Vector3(pcCameraSpeed * Input.GetAxisRaw("Horizontal") + transform.position.x, transform.position.y, transform.position.z);
             if (vCam != null && confiner != null)
             {
                 if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
@@ -116,17 +130,37 @@ public class CameraControl : MonoBehaviour
                 }
             }
         }
-        if(Input.mouseScrollDelta.y > 0 && vCam.m_Lens.OrthographicSize < maxSize)
+    
+        if(Mathf.Abs(Input.mouseScrollDelta.y) > 0)// && vCam.m_Lens.OrthographicSize < maxSize && vCam.m_Lens.OrthographicSize > minSize)
         {
-            vCam.m_Lens.OrthographicSize += 0.05f;
-            playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
-            CalcCameraLimits();
+            float newCameraSize = vCam.m_Lens.OrthographicSize - (Input.mouseScrollDelta.y * mouseZoomSpeed);
+            if (newCameraSize < maxSize && newCameraSize > minSize)
+            {
+                vCam.m_Lens.OrthographicSize = newCameraSize;
+                playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
+                CalcCameraLimits();
+            }
         }
-        if (Input.mouseScrollDelta.y < 0 && vCam.m_Lens.OrthographicSize > minSize)
+        
+        if(Input.GetAxis("ZoomIn") > 0)
         {
-            vCam.m_Lens.OrthographicSize -= 0.05f;
-            playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
-            CalcCameraLimits();
+            float newCameraSize = vCam.m_Lens.OrthographicSize - keyboardZoomSpeed;
+            if (newCameraSize < maxSize && newCameraSize > minSize)
+            {
+                vCam.m_Lens.OrthographicSize = newCameraSize;
+                playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
+                CalcCameraLimits();
+            }
+        }
+        else if(Input.GetAxis("ZoomOut") > 0)
+        {
+            float newCameraSize = vCam.m_Lens.OrthographicSize + keyboardZoomSpeed;
+            if (newCameraSize < maxSize && newCameraSize > minSize)
+            {
+                vCam.m_Lens.OrthographicSize = newCameraSize;
+                playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
+                CalcCameraLimits();
+            }
         }
     }
 
