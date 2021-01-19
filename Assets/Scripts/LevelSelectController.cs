@@ -11,6 +11,7 @@ public class LevelSelectController : MonoBehaviour
     void Awake()
     {
         gameDataController = FindObjectOfType<GameDataController>();
+        levels = GetComponentsInChildren<Button>();
         ActivateLevels();
     }
 

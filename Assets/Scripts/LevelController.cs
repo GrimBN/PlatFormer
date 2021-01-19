@@ -168,7 +168,7 @@ public class LevelController : MonoBehaviour
             tilePlacer.gameObject.SetActive(false);
             isPlaying = true;
             characterInstance.SetPlaying(isPlaying);
-            foreGroundTilemap.enabled = false;
+            foreGroundTilemap.enabled = false;          //The level's drawable tilemap sometimes has botched collision, this is an attempt at a fix
             foreGroundTilemap.enabled = true;
             timer = 0f;
             /*if(timer != null)
@@ -224,13 +224,7 @@ public class LevelController : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < platformCoroutines.Count; i++)       //platformCoroutines.Count *should* be equal to movingPlatforms.Count...
-        {
-            StopCoroutine(platformCoroutines[i]);
-            //movingPlatforms[i].ResetPlatformPosition();
-        }
-
-        platformCoroutines.Clear();
+        ResetMovingPlatforms(false);
 
         var gameDataController = FindObjectOfType<GameDataController>();
         if(gameDataController != null)
@@ -253,21 +247,7 @@ public class LevelController : MonoBehaviour
     {
         Destroy(characterInstance.gameObject);
         InstantiateCharacter();
-        /*if ((modeObject != null && modeObject.GetCharacter() == GameMode.Character.Tim) || modeObject == null)
-        {
-            characterInstance = Instantiate(timPrefab, characterInitialPos, Quaternion.identity);
-        }
-        else if(modeObject != null && modeObject.GetCharacter() == GameMode.Character.Tum)
-        {
-            characterInstance = Instantiate(tumPrefab, characterInitialPos, Quaternion.identity);
-        }    */
-
         AssignPlayingAndDrivenCam();
-        /*if (playingCam != null && drivenCamera != null)
-        {
-            playingCam.Follow = characterInstance.transform;
-            drivenCamera.m_AnimatedTarget = characterInstance.gameObject.GetComponent<Animator>();
-        }*/
         isPlaying = false;
         timer = 0f;
         if (timeText != null)
@@ -275,6 +255,14 @@ public class LevelController : MonoBehaviour
             timeText.color = Color.white;
         }
 
+        ResetStars();
+        ResetMovingPlatforms();
+
+        tilePlacer.gameObject.SetActive(true);
+    }
+
+    private void ResetStars()
+    {
         foreach (GameObject star in stars)
         {
             if (!star.activeInHierarchy)
@@ -287,21 +275,26 @@ public class LevelController : MonoBehaviour
         {
             starImage.SetActive(false);
         }
+        starCount = 0;
+    }
 
+    private void ResetMovingPlatforms(bool toReset = true)
+    {
         for (int i = 0; i < movingPlatforms.Length; i++)       //platformCoroutines.Count *should* be equal to movingPlatforms.Count...
         {
             if (platformCoroutines.Count > 0)
             {
                 StopCoroutine(platformCoroutines[i]);
             }
-            movingPlatforms[i].ResetPlatformPosition();
+
+            if (toReset)
+            {
+                movingPlatforms[i].ResetPlatformPosition();
+            }
         }
 
-        platformCoroutines.Clear();                 //Very Important, otherwise reseting and replaying the level causes new coroutines to added to the list which results
-                                                    //different Counts for the two lists used in the for loop and also retains redundant coroutines in the list 
-                                                    //clogging up the memory
-        starCount = 0;
-        tilePlacer.gameObject.SetActive(true);
-    }    
-    
+        platformCoroutines.Clear(); //Very Important, otherwise reseting and replaying the level causes new coroutines to added to the list which results
+                                    //different Counts for the two lists used in the for loop and also retains redundant coroutines in the list 
+                                    //clogging up the memory
+    }
 }

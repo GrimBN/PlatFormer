@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameDataController : MonoBehaviour
 {
-    private int levelsUnlocked;
+    [SerializeField] int levelsUnlocked;    //Set to private for build, only for debugging
     private bool tumUnlockedStatus = false;
     private bool alternateUnlockedStatus = false;
 

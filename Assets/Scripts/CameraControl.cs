@@ -116,13 +116,13 @@ public class CameraControl : MonoBehaviour
                 }
             }
         }
-        if(Input.GetKey(KeyCode.KeypadPlus) && vCam.m_Lens.OrthographicSize < maxSize)
+        if(Input.mouseScrollDelta.y > 0 && vCam.m_Lens.OrthographicSize < maxSize)
         {
             vCam.m_Lens.OrthographicSize += 0.05f;
             playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
             CalcCameraLimits();
         }
-        if (Input.GetKey(KeyCode.KeypadMinus) && vCam.m_Lens.OrthographicSize > minSize)
+        if (Input.mouseScrollDelta.y < 0 && vCam.m_Lens.OrthographicSize > minSize)
         {
             vCam.m_Lens.OrthographicSize -= 0.05f;
             playingCam.m_Lens.OrthographicSize = vCam.m_Lens.OrthographicSize;
