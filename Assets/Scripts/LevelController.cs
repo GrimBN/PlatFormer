@@ -31,7 +31,7 @@ public class LevelController : MonoBehaviour
     GameObject[] stars;
     MovingPlatform[] movingPlatforms;
     List<Coroutine> platformCoroutines = new List<Coroutine>();
-    GameMode modeObject;
+    GameMode gameMode;
     Collider2D foreGroundTilemap;
     [SerializeField] GameObject winLabel;
     [SerializeField] GameObject loseLabel;
@@ -56,7 +56,7 @@ public class LevelController : MonoBehaviour
         tilePlacer = FindObjectOfType<TilePlacer>();
         /*characterInstance = FindObjectOfType<Tim>();
         characterInitialPos = characterInstance.transform.position;*/
-        modeObject = FindObjectOfType<GameMode>();
+        gameMode = FindObjectOfType<GameMode>();
         foreGroundTilemap = GameObject.FindGameObjectWithTag("Drawing Tilemap").GetComponent<Collider2D>();
         levelLoader = FindObjectOfType<LevelLoader>();
         stars = GameObject.FindGameObjectsWithTag("Star");
@@ -66,7 +66,7 @@ public class LevelController : MonoBehaviour
     private void InstantiateCharacter()
     {
         //never do the following the way it has been done
-        characterInstance = Instantiate(modeObject != null ? modeObject.GetCharacter() == GameMode.Character.Tim ? timPrefab : tumPrefab : timPrefab, characterInitialPos, Quaternion.identity);
+        characterInstance = Instantiate(gameMode != null ? gameMode.GetCharacter() == GameMode.Character.Tim ? timPrefab : tumPrefab : timPrefab, characterInitialPos, Quaternion.identity);
     }
 
     private void AssignPlayingAndDrivenCam()
@@ -80,20 +80,19 @@ public class LevelController : MonoBehaviour
 
     private void IdentifyGameMode()
     {
-        if (modeObject != null && modeObject.GetMode() == GameMode.Modes.Alternate)
+        if (gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
         {
             blocksText.gameObject.SetActive(true);
             blocksLeft = blockCount;
             UpdateBlockText();
             if (timeText != null)
             {
-                timeText.text = "Time : " + timer.ToString("F") + "/" + timeLimit.ToString("F");
+                UpdateTimerText();
             }
             foreach (GameObject star in stars)
             {
                 star.SetActive(false);
             }
-
         }
         else
         {
@@ -148,16 +147,21 @@ public class LevelController : MonoBehaviour
             timer += Time.deltaTime;
             if (timeText != null)
             {
-                timeText.text = "Time : " + timer.ToString("F");
-                if (timeText.color != Color.red && timer > timeLimit)
-                {
-                    timeText.color = Color.red;
-                }
-                /*else if (timeTe)
-                {
-                    timeText.color = Color.white;
-                }*/
+                UpdateTimerText();
             }
+        }
+    }
+
+    private void UpdateTimerText()
+    {
+        timeText.text = "Time : " + timer.ToString("F") + "/" + timeLimit.ToString("F");
+        if (timeText.color != Color.red && timer > timeLimit)
+        {
+            timeText.color = Color.red;
+        }
+        else if (timeText.color != Color.white && timer < timeLimit)
+        {
+            timeText.color = Color.white;
         }
     }
 
@@ -211,7 +215,7 @@ public class LevelController : MonoBehaviour
     {
         hasWon = true;
         isPlaying = false;
-        if ( modeObject != null && modeObject.GetMode() == GameMode.Modes.Alternate)
+        if ( gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
         {
             starImages[0].SetActive(true);
             if (blocksLeft >= 0)
@@ -229,8 +233,8 @@ public class LevelController : MonoBehaviour
         var gameDataController = FindObjectOfType<GameDataController>();
         if(gameDataController != null)
         {
-            if (levelID > 0) gameDataController.UpdateData(levelID, starCount, modeObject);
-            else gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, modeObject);            
+            if (levelID > 0) gameDataController.UpdateData(levelID, starCount, gameMode);
+            else gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, gameMode);            
         }
 
         winLabel.SetActive(true);        
@@ -252,10 +256,13 @@ public class LevelController : MonoBehaviour
         timer = 0f;
         if (timeText != null)
         {
-            timeText.color = Color.white;
+            UpdateTimerText();
         }
 
-        ResetStars();
+        if(gameMode.GetMode() == GameMode.Modes.Normal)
+        {
+            ResetStars();
+        }
         ResetMovingPlatforms();
 
         tilePlacer.gameObject.SetActive(true);

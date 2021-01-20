@@ -28,12 +28,13 @@ public class GameDataController : MonoBehaviour
         {
             DontDestroyOnLoad(this);
         }
+        LoadData();
     }
 
     private void Start()
     {
         //SaveData();
-        LoadData();
+        
     }
 
     private void SaveData()
@@ -74,8 +75,11 @@ public class GameDataController : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/Save.sav", FileMode.Open);
             GameData gameData = (GameData)bf.Deserialize(file);
             file.Close();
-
+            
             levelsUnlocked = gameData.levelsUnlocked;
+            normalStarsCollected = gameData.normalStarsCollected;
+            alternateStarsCollected = gameData.alternateStarsCollected;
+            
             tumUnlockedStatus = gameData.tumUnlockedStatus;
             alternateUnlockedStatus = gameData.alternateUnlockedStatus;
         }
@@ -83,13 +87,13 @@ public class GameDataController : MonoBehaviour
 
     public void UpdateData(int completedLevel, int starCount, GameMode gameMode)
     {
-        if (gameMode.GetMode() == GameMode.Modes.Normal)
+        if (gameMode.GetMode() == GameMode.Modes.Normal && starCount > normalStarsCollected[completedLevel - 1])
         {
-            normalStarsCollected[completedLevel] = starCount;
+            normalStarsCollected[completedLevel - 1] = starCount;
         }
-        else if (gameMode.GetMode() == GameMode.Modes.Alternate)
+        else if (gameMode.GetMode() == GameMode.Modes.Alternate && starCount > alternateStarsCollected[completedLevel - 1])
         {
-            alternateStarsCollected[completedLevel] = starCount;
+            alternateStarsCollected[completedLevel - 1] = starCount;
         }
 
         if (completedLevel == levelsUnlocked)
@@ -109,15 +113,16 @@ public class GameDataController : MonoBehaviour
         {
             totalStars += normalStarsCollected[i];
         }
+        Debug.Log(totalStars);
 
         if (totalStars >= TUM_UNLOCK_STARS)
         {
-            tumUnlockedStatus = true;
+            tumUnlockedStatus = true;            
         }
 
         if (totalStars >= ALTERNATE_UNLOCK_STARS)
         {
-            alternateUnlockedStatus = true;
+            alternateUnlockedStatus = true;            
         }
     }
 
