@@ -10,7 +10,7 @@ public class GameDataController : MonoBehaviour
     private bool tumUnlockedStatus = false;
     private bool alternateUnlockedStatus = false;
 
-    public int[] normalStarsCollected, alternateStarsCollected;
+    private int[] normalStarsCollected, alternateStarsCollected;
 
     private const int NUMBER_OF_LEVELS = 20;
     private const int TUM_UNLOCK_STARS = 10;
@@ -32,6 +32,7 @@ public class GameDataController : MonoBehaviour
 
     private void Start()
     {
+        //SaveData();
         LoadData();
     }
 
@@ -42,6 +43,8 @@ public class GameDataController : MonoBehaviour
         GameData gameData = new GameData
         {
             levelsUnlocked = levelsUnlocked,
+            normalStarsCollected = normalStarsCollected,
+            alternateStarsCollected = alternateStarsCollected,
             tumUnlockedStatus = tumUnlockedStatus,
             alternateUnlockedStatus = alternateUnlockedStatus
         };
@@ -55,6 +58,13 @@ public class GameDataController : MonoBehaviour
         if (!File.Exists(Application.persistentDataPath + "/Save.sav"))
         {
             levelsUnlocked = 1;
+            normalStarsCollected = new int[20];
+            alternateStarsCollected = new int[20];
+            for(int i = 0; i < NUMBER_OF_LEVELS; i++)
+            {
+                normalStarsCollected[i] = 0;
+                alternateStarsCollected[i] = 0;
+            }
             SaveData();
         }
 
@@ -71,14 +81,51 @@ public class GameDataController : MonoBehaviour
         }
     }
 
-    public void UpdateData(int completedLevel)
+    public void UpdateData(int completedLevel, int starCount, GameMode gameMode)
     {
-        if(completedLevel == levelsUnlocked)
+        if (gameMode.GetMode() == GameMode.Modes.Normal)
+        {
+            normalStarsCollected[completedLevel] = starCount;
+        }
+        else if (gameMode.GetMode() == GameMode.Modes.Alternate)
+        {
+            alternateStarsCollected[completedLevel] = starCount;
+        }
+
+        if (completedLevel == levelsUnlocked)
         {
             levelsUnlocked++;
-            if (levelsUnlocked == TUM_UNLOCK_STARS) tumUnlockedStatus = true;
-            if (levelsUnlocked == ALTERNATE_UNLOCK_STARS) alternateUnlockedStatus = true;
-            SaveData();
+        }
+
+        CheckForUnlocks();
+
+        SaveData();
+    }
+
+    private void CheckForUnlocks()
+    {
+        int totalStars = 0;
+        for (int i = 0; i < normalStarsCollected.Length; i++)
+        {
+            totalStars += normalStarsCollected[i];
+        }
+
+        if (totalStars >= TUM_UNLOCK_STARS)
+        {
+            tumUnlockedStatus = true;
+        }
+
+        if (totalStars >= ALTERNATE_UNLOCK_STARS)
+        {
+            alternateUnlockedStatus = true;
+        }
+    }
+
+    void Update()
+    {
+        if(Input.GetAxis("ZoomIn") > 0 && Input.GetAxis("ZoomOut") > 0 && Input.GetKeyDown(KeyCode.K))
+        {
+            File.Delete(Application.persistentDataPath + "/Save.sav");
         }
     }
 
@@ -95,5 +142,15 @@ public class GameDataController : MonoBehaviour
     public bool GetAlternateUnlockedStatus()
     {
         return alternateUnlockedStatus;
+    }
+
+    public int[] GetNormalStarsCollected()
+    {
+        return normalStarsCollected;
+    }
+
+    public int[] GetAlternateStarsCollected()
+    {
+        return alternateStarsCollected;
     }
 }

@@ -108,10 +108,7 @@ public class Tim : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision)
-    {
-        //Take a look at this and fix it somehow
-        //ContactFilter2D tempFilter = new ContactFilter2D();
-        //tempFilter.SetLayerMask(LayerMask.GetMask("Interactables"));        
+    {             
         if (collision.gameObject.layer != LayerMask.GetMask("Boundary") && collision.gameObject.tag != "Star" && collision.gameObject.tag != "Bounce Pad" && collision.gameObject.layer != LayerMask.GetMask("Interactables") && !feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Bounce Pad")))
         {            
             Jump(jumpSpeed);

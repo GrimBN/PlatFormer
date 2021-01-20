@@ -229,8 +229,8 @@ public class LevelController : MonoBehaviour
         var gameDataController = FindObjectOfType<GameDataController>();
         if(gameDataController != null)
         {
-            if (levelID > 0) gameDataController.UpdateData(levelID);
-            else gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);            
+            if (levelID > 0) gameDataController.UpdateData(levelID, starCount, modeObject);
+            else gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, modeObject);            
         }
 
         winLabel.SetActive(true);        
