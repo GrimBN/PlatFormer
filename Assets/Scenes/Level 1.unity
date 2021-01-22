@@ -11061,6 +11061,16 @@ PrefabInstance:
       propertyPath: levelID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: timeLimit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: blockCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2769478358811104722, guid: 1271b8681929e504fba483f0bcd092b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11586,6 +11596,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toolbar Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1567043837296121902, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: blockingCollider
@@ -11625,11 +11640,6 @@ PrefabInstance:
         type: 3}
       propertyPath: timeToOpenOrClose
       value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1567043837296121902, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4419365244389273558, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}

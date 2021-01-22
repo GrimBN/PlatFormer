@@ -7,6 +7,7 @@ using TMPro;
 
 public class LevelController : MonoBehaviour
 {
+    //TODO : Playtest alternate mode to identify workable values for block count and time
     //Parameters
     bool isPlaying = false;
     bool hasWon = false;
