@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 3208303761864922003}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Drawing Toolbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxXMultiplier: 1.13
   lerpValue: 0.15
-  blockingCollider: {fileID: 0}
   toolbarParentObject: {fileID: 1567043837296121902}
 --- !u!114 &1550829767954208702
 MonoBehaviour:

@@ -15,11 +15,7 @@ public class TilePlacer : MonoBehaviour
     bool isLevelControlToolbarOpen = false;
     Touch touch;
     bool usingBoxSelect = false;    
-    [SerializeField] float pixelSizeMultiplier = 64f;
-    [SerializeField] float openToolbarRestrictedHeight;
-    [SerializeField] float openToolbarRestrictedWidthLeft;
-    [SerializeField] float openToolbarRestrictedWidthRight;
-    Vector2 topLeftRestriction, topRightRestriction;
+    [SerializeField] float pixelSizeMultiplier = 64f;    
     int tileCount = 0;
     Vector3Int INVALID_POS = new Vector3Int(0, 0, -1); // Treat as a constant
     
@@ -27,7 +23,7 @@ public class TilePlacer : MonoBehaviour
     [SerializeField] RuleTile tile;    
     [SerializeField] Tilemap foreGroundTilemap;   
     [SerializeField] Tilemap hazardsTilemap;
-    [SerializeField] RectTransform toolbarBackground, levelControlBackground;
+    RectTransform toolbarBackground, levelControlBackground;
     Tilemap fixedForegroundTilemap;
     LevelController levelController;
     CompositeCollider2D validAreaCollider;    
@@ -41,8 +37,8 @@ public class TilePlacer : MonoBehaviour
         validAreaCollider = GetComponent<CompositeCollider2D>();
         rectDraw = FindObjectOfType<RectDraw>();
         fixedForegroundTilemap = GameObject.FindGameObjectWithTag("Fixed Foreground").GetComponent<Tilemap>();
-        topLeftRestriction = new Vector2(openToolbarRestrictedWidthLeft * Screen.width, openToolbarRestrictedHeight * Screen.height);
-        topRightRestriction = new Vector2(openToolbarRestrictedWidthRight * Screen.width, openToolbarRestrictedHeight * Screen.height);
+        toolbarBackground = GameObject.FindGameObjectWithTag("Drawing Toolbar").GetComponent<RectTransform>();
+        levelControlBackground = GameObject.FindGameObjectWithTag("Level Control Toolbar").GetComponent<RectTransform>();        
         levelController = FindObjectOfType<LevelController>();
     }    
 
@@ -56,7 +52,7 @@ public class TilePlacer : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            if (ValidPosition(touch.position))//!(touch.position.x < topLeftRestriction.x && touch.position.y > topLeftRestriction.y) && !(touch.position.x > topRightRestriction.x && touch.position.y > topRightRestriction.y))
+            if (ValidPosition(touch.position))
             {
                 if (!usingBoxSelect && (isDrawing || isErasing))
                 {
@@ -111,20 +107,8 @@ public class TilePlacer : MonoBehaviour
     }
 
     private bool ValidPosition(Vector2 posToValidate)
-    {        
-        /*Vector3 [] toolbarWorldSpaceCorners = { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
-        Vector3 [] levelControlWorldSpaceCorners = { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
-        toolbarBackground.GetWorldCorners(toolbarWorldSpaceCorners);
-        levelControlBackground.GetWorldCorners(levelControlWorldSpaceCorners);*/
-        if(RectTransformUtility.RectangleContainsScreenPoint(toolbarBackground,posToValidate) || RectTransformUtility.RectangleContainsScreenPoint(levelControlBackground,posToValidate))
-        {
-            return false;
-        }
-
-        else
-        {
-            return true;
-        }
+    {
+        return !(RectTransformUtility.RectangleContainsScreenPoint(toolbarBackground, posToValidate) || RectTransformUtility.RectangleContainsScreenPoint(levelControlBackground, posToValidate));
     }
 
     private IEnumerator BoxSelect()                                                         // REMEMBER TO CHANGE THE INPUT BACK TO MOBILE BEFORE BUILDING

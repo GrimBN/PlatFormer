@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 3879220604629427336}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Level Control Toolbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,7 +284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxXMultiplier: -0.07
   lerpValue: 0.15
-  blockingCollider: {fileID: 0}
   toolbarParentObject: {fileID: 931312474682175285}
 --- !u!114 &925008853447286949
 MonoBehaviour:

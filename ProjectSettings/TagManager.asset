@@ -10,6 +10,8 @@ TagManager:
   - Bounce Pad
   - Fixed Foreground
   - Drawing Tilemap
+  - Drawing Toolbar
+  - Level Control Toolbar
   layers:
   - Default
   - TransparentFX
