@@ -58,13 +58,12 @@ public class CameraControl : MonoBehaviour
             touch1 = Input.GetTouch(0);
             if (touch1.phase == TouchPhase.Moved)
             {
-                Vector3 newPos = new Vector3(transform.position.x - touch1.deltaPosition.x * cameraSpeed * cameraSpeedZoomRatio, transform.position.y - touch1.deltaPosition.y * cameraSpeed * cameraSpeedZoomRatio, transform.position.z);
+                float xPosDelta = touch1.deltaPosition.x * cameraSpeed * cameraSpeedZoomRatio;
+                float yPosDelta = touch1.deltaPosition.y * cameraSpeed * cameraSpeedZoomRatio;
+                Vector3 newPos = new Vector3(Mathf.Clamp(transform.position.x - xPosDelta ,minX,maxX), Mathf.Clamp(transform.position.y - yPosDelta,minY,maxY), transform.position.z);
                 if (vCam != null && confiner != null)
                 {
-                    if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
-                    {
-                        transform.position = newPos;
-                    }
+                    transform.position = newPos;
                 }
             }
         }
@@ -100,8 +99,8 @@ public class CameraControl : MonoBehaviour
         {
             float xPosDelta = Input.GetAxis("Mouse X") * vCam.m_Lens.OrthographicSize / maxSize;
             float yPosDelta = Input.GetAxis("Mouse Y") * vCam.m_Lens.OrthographicSize / maxSize;
-            Vector3 newPos = new Vector3(transform.position.x - xPosDelta, transform.position.y - yPosDelta, transform.position.z);
-            if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
+            Vector3 newPos = new Vector3(Mathf.Clamp(transform.position.x - xPosDelta,minX,maxX), Mathf.Clamp(transform.position.y - yPosDelta,minY,maxY), transform.position.z);
+            if (vCam != null && confiner != null)
             {
                 transform.position = new Vector3(newPos.x, newPos.y, -10);
             }
@@ -112,7 +111,7 @@ public class CameraControl : MonoBehaviour
             Vector3 newPos = new Vector3(transform.position.x, pcCameraSpeed * Input.GetAxisRaw("Vertical") + transform.position.y, transform.position.z);
             if (vCam != null && confiner != null)
             {
-                if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
+                if (newPos.x <= maxX && newPos.x >= minX && newPos.y <= maxY && newPos.y >= minY)
                 {
                     transform.position = newPos;
                 }
@@ -124,7 +123,7 @@ public class CameraControl : MonoBehaviour
             Vector3 newPos = new Vector3(pcCameraSpeed * Input.GetAxisRaw("Horizontal") + transform.position.x, transform.position.y, transform.position.z);
             if (vCam != null && confiner != null)
             {
-                if (newPos.x < maxX && newPos.x > minX && newPos.y < maxY && newPos.y > minY)
+                if (newPos.x <= maxX && newPos.x >= minX && newPos.y <= maxY && newPos.y >= minY)
                 {
                     transform.position = newPos;
                 }

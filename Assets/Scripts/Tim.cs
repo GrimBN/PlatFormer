@@ -110,7 +110,11 @@ public class Tim : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {        
         // OK so for some reason LayerMask.GetMask() returns the mask value in the form of 2^(Mask integer value) so need to compare with the log (or 2^ collision.gameObject.layer)
-        if ( collision.gameObject.layer!= Mathf.Log(LayerMask.GetMask("Boundary"),2) && collision.gameObject.layer != Mathf.Log(LayerMask.GetMask("Hazards"), 2) && collision.gameObject.tag != "Star" && collision.gameObject.tag != "Bounce Pad" && collision.gameObject.layer != Mathf.Log(LayerMask.GetMask("Interactables"),2) && !feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Bounce Pad")))
+        if (collision.gameObject.layer!= Mathf.Log(LayerMask.GetMask("Boundary"),2) && 
+            collision.gameObject.layer != Mathf.Log(LayerMask.GetMask("Hazards"), 2) && 
+            collision.gameObject.tag != "Star" && collision.gameObject.tag != "Bounce Pad" &&
+            collision.gameObject.layer != Mathf.Log(LayerMask.GetMask("Interactables"),2) &&
+            !feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Bounce Pad")))
         {                        
             Jump(jumpSpeed);
         }

@@ -17,8 +17,7 @@ public class LevelController : MonoBehaviour
     float timer = 0f;
     [SerializeField] int blockCount;
     [SerializeField] float timeLimit;
-    int blocksLeft;
-    [SerializeField] int levelID = 0;
+    int blocksLeft;    
 
     //Cached Component References
     [SerializeField] Tim timPrefab;
@@ -213,7 +212,7 @@ public class LevelController : MonoBehaviour
     }
 
     public void Win()
-    {
+    {        
         hasWon = true;
         isPlaying = false;
         if ( gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
@@ -234,8 +233,8 @@ public class LevelController : MonoBehaviour
         var gameDataController = FindObjectOfType<GameDataController>();
         if(gameDataController != null)
         {
-            if (levelID > 0) gameDataController.UpdateData(levelID, starCount, gameMode);
-            else gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, gameMode);            
+            //if (levelID > 0) gameDataController.UpdateData(levelID, starCount, gameMode);
+            gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, gameMode);            
         }
 
         winLabel.SetActive(true);        
