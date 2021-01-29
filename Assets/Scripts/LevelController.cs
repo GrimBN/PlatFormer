@@ -6,8 +6,7 @@ using TMPro;
 //using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
-{
-    //TODO : Playtest alternate mode to identify workable values for block count and time
+{    
     //Parameters
     bool isPlaying = false;
     bool hasWon = false;
@@ -35,6 +34,8 @@ public class LevelController : MonoBehaviour
     Collider2D foreGroundTilemap;
     [SerializeField] GameObject winLabel;
     [SerializeField] GameObject loseLabel;
+    [SerializeField] AudioClip winSFX;
+    [SerializeField] AudioClip loseSFX;
     [SerializeField] TextMeshProUGUI blocksText;
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] GameObject[] starImages;
@@ -218,13 +219,16 @@ public class LevelController : MonoBehaviour
         if ( gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
         {
             starImages[0].SetActive(true);
+            starCount = 1;
             if (blocksLeft >= 0)
             {
                 starImages[1].SetActive(true);
+                starCount++;
             }
             if(timer < timeLimit)
             {
                 starImages[2].SetActive(true);
+                starCount++;
             }
         }
 
@@ -237,7 +241,8 @@ public class LevelController : MonoBehaviour
             gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, gameMode);            
         }
 
-        winLabel.SetActive(true);        
+        winLabel.SetActive(true);
+        AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position,0.5f);
     }
 
     public void Lose()
@@ -245,6 +250,7 @@ public class LevelController : MonoBehaviour
         hasLost = true;
         isPlaying = false;
         loseLabel.SetActive(true);
+        AudioSource.PlayClipAtPoint(loseSFX, Camera.main.transform.position,0.5f);
     }
 
     public void ReloadLevel()

@@ -45,15 +45,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockCount: 5
   timeLimit: 3
-  levelID: 0
   timPrefab: {fileID: 2941564632871719225, guid: fd411339fbd93ac4ca654d28c1fd5722,
     type: 3}
   tumPrefab: {fileID: 6922065233737970833, guid: bfe9d34a3af5e1846836b9852e6ddab2,
     type: 3}
   characterInitialPos: {x: -11, y: -3.5, z: 0}
-  foreGroundTilemap: {fileID: 0}
   winLabel: {fileID: 0}
   loseLabel: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: 073c561c06c16e94aa8d25f710f88887, type: 3}
+  loseSFX: {fileID: 8300000, guid: ff59295728bac53429856287d7605fde, type: 3}
   blocksText: {fileID: 0}
   timeText: {fileID: 0}
   starImages:

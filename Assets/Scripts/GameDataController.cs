@@ -112,8 +112,7 @@ public class GameDataController : MonoBehaviour
         for (int i = 0; i < normalStarsCollected.Length; i++)
         {
             totalStars += normalStarsCollected[i];
-        }
-        Debug.Log(totalStars);
+        }        
 
         if (totalStars >= TUM_UNLOCK_STARS)
         {
