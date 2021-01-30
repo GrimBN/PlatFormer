@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spring : MonoBehaviour
 {
-    BoxCollider2D springCollider;
+    /*BoxCollider2D springCollider;
     Animator springAnimator;
     Vector2 launchVelocity;
     Rigidbody2D characterRigidbody;
@@ -21,7 +21,7 @@ public class Spring : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       /* if(springCollider.IsTouchingLayers(LayerMask.GetMask("Tim")))
+        if(springCollider.IsTouchingLayers(LayerMask.GetMask("Tim")))
         {
             springAnimator.SetBool("onSpring",true);
             characterRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
@@ -32,7 +32,7 @@ public class Spring : MonoBehaviour
                 launchVelocity.x = characterRigidbody.velocity.x;
                 characterRigidbody.velocity = slowedVelocity;
             }
-        }*/
+        }
     }
 
     public void Bounce(Rigidbody2D collidingRigidbody)
@@ -58,5 +58,5 @@ public class Spring : MonoBehaviour
             springAnimator.SetBool("onSpring", false);
             characterRigidbody.gameObject.GetComponent<Tim>().NotOnSpring();
         }
-    }
+    }*/
 }

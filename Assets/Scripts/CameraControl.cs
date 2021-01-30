@@ -93,8 +93,6 @@ public class CameraControl : MonoBehaviour
             }
         }
 
-        //placeholder pc controls
-
         if(Input.GetMouseButton(1))
         {
             float xPosDelta = Input.GetAxis("Mouse X") * vCam.m_Lens.OrthographicSize / maxSize;

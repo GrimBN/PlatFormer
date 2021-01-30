@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using TMPro;
 
 public class TilePlacer : MonoBehaviour
 {

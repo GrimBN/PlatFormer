@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ButtonsController : MonoBehaviour
 {    
@@ -18,6 +19,10 @@ public class ButtonsController : MonoBehaviour
         {
             modeTumButton.interactable = gameDataController.GetTumUnlockedStatus();
             modeAlternateButton.interactable = gameDataController.GetAlternateUnlockedStatus();
+            if(!modeAlternateButton.interactable)
+            {
+                modeAlternateButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Needs " + Constants.ALTERNATE_UNLOCK_STARS + " stars";
+            }
         }        
     }
 

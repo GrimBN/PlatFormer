@@ -4,18 +4,21 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 
+public static class Constants
+{
+    public const int NUMBER_OF_LEVELS = 20;
+    public const int TUM_UNLOCK_STARS = 10;
+    public const int ALTERNATE_UNLOCK_STARS = 15;
+}
+
 public class GameDataController : MonoBehaviour
 {
-    [SerializeField] int levelsUnlocked;    //Set to private for build, only for debugging
+    private int levelsUnlocked;    
     private bool tumUnlockedStatus = false;
     private bool alternateUnlockedStatus = false;
 
     private int[] normalStarsCollected, alternateStarsCollected;
-
-    private const int NUMBER_OF_LEVELS = 20;
-    private const int TUM_UNLOCK_STARS = 10;
-    private const int ALTERNATE_UNLOCK_STARS = 10;
-
+  
     void Awake()
     {
         int numberOfGameDataControllerInstances = FindObjectsOfType<GameDataController>().Length;        
@@ -29,13 +32,7 @@ public class GameDataController : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         LoadData();
-    }
-
-    private void Start()
-    {
-        //SaveData();
-        
-    }
+    }    
 
     private void SaveData()
     {        
@@ -61,7 +58,7 @@ public class GameDataController : MonoBehaviour
             levelsUnlocked = 1;
             normalStarsCollected = new int[20];
             alternateStarsCollected = new int[20];
-            for(int i = 0; i < NUMBER_OF_LEVELS; i++)
+            for(int i = 0; i < Constants.NUMBER_OF_LEVELS; i++)
             {
                 normalStarsCollected[i] = 0;
                 alternateStarsCollected[i] = 0;
@@ -114,24 +111,24 @@ public class GameDataController : MonoBehaviour
             totalStars += normalStarsCollected[i];
         }        
 
-        if (totalStars >= TUM_UNLOCK_STARS)
+        if (totalStars >= Constants.TUM_UNLOCK_STARS)
         {
             tumUnlockedStatus = true;            
         }
 
-        if (totalStars >= ALTERNATE_UNLOCK_STARS)
+        if (totalStars >= Constants.ALTERNATE_UNLOCK_STARS)
         {
             alternateUnlockedStatus = true;            
         }
     }
 
-    void Update()
+    /*void Update()
     {
         if(Input.GetAxis("ZoomIn") > 0 && Input.GetAxis("ZoomOut") > 0 && Input.GetKeyDown(KeyCode.K))
         {
             File.Delete(Application.persistentDataPath + "/Save.sav");
         }
-    }
+    }*/
 
     public int GetLevelsUnlocked()
     {

@@ -7,6 +7,7 @@ using TMPro;
 
 public class LevelController : MonoBehaviour
 {    
+    //TODO : Add text indicators about alternate mode unlock requirements and moment of unlock
     //Parameters
     bool isPlaying = false;
     bool hasWon = false;
@@ -16,6 +17,7 @@ public class LevelController : MonoBehaviour
     float timer = 0f;
     [SerializeField] int blockCount;
     [SerializeField] float timeLimit;
+    [Range(0, 1)] [SerializeField] float volume = 0.5f;
     int blocksLeft;    
 
     //Cached Component References
@@ -242,7 +244,7 @@ public class LevelController : MonoBehaviour
         }
 
         winLabel.SetActive(true);
-        AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position,0.5f);
+        AudioSource.PlayClipAtPoint(winSFX, Camera.main.transform.position,volume);
     }
 
     public void Lose()
@@ -250,7 +252,7 @@ public class LevelController : MonoBehaviour
         hasLost = true;
         isPlaying = false;
         loseLabel.SetActive(true);
-        AudioSource.PlayClipAtPoint(loseSFX, Camera.main.transform.position,0.5f);
+        AudioSource.PlayClipAtPoint(loseSFX, Camera.main.transform.position,volume);
     }
 
     public void ReloadLevel()

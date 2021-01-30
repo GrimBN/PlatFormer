@@ -9,9 +9,7 @@ public class Tim : MonoBehaviour
     [SerializeField] float horizontalMoveSpeed;
     [SerializeField] float deathHorizontalKnockback;
     [SerializeField] float deathVerticalKnockback;
-    [SerializeField] float deathTorque;
-    [SerializeField] float springAnimationSpeed;
-    [SerializeField] float springVelocity;
+    [SerializeField] float deathTorque;    
     [Range(0,1)][SerializeField] float volume = 0.5f;
     bool isPlaying = false;
     bool isAlive = true;
@@ -127,22 +125,9 @@ public class Tim : MonoBehaviour
             timRigidbody2D.velocity = new Vector2(timRigidbody2D.velocity.x, jumpSpeed);//Mathf.Max(timRigidbody2D.velocity.y + jumpSpeed, jumpSpeed));
             animator.SetTrigger("Jump");            
             //animator.SetBool("isRunning", false);            
-            audioSource.PlayOneShot(jumpSFX, volume);
+            audioSource.PlayOneShot(jumpSFX, volume/2);
         }
-    }
-
-    public void OnSpring()
-    {
-        animator.SetFloat("springSpeed", springAnimationSpeed);
-    }
-
-    public void NotOnSpring()
-    {
-        animator.SetFloat("springSpeed", 1f);
-        Move();
-        animator.SetTrigger("Jump");                    
-        audioSource.PlayOneShot(jumpSFX, volume);
-    }
+    }   
 
     public void PlayRunSFX()
     {
