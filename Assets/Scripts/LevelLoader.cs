@@ -35,12 +35,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevelSelectScene()
     {
         SceneManager.LoadScene("Level Select");
-    }
-
-    public void LoadGameOverScene()
-    {
-        SceneManager.LoadScene("Game Over");
-    }
+    }    
     
     public void QuitGame()
     {

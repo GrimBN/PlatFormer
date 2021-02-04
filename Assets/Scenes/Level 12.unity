@@ -4075,7 +4075,7 @@ PrefabInstance:
     - target: {fileID: 2833317664001222598, guid: f24b3d7298c37ef438143587855e6268,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.45132768
+      value: 0.444445
       objectReference: {fileID: 0}
     - target: {fileID: 2833317664001222598, guid: f24b3d7298c37ef438143587855e6268,
         type: 3}
@@ -26057,11 +26057,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toolbar Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1567043837296121902, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: blockingCollider
@@ -26091,6 +26086,11 @@ PrefabInstance:
         type: 3}
       propertyPath: minXMultiplier
       value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567043837296121902, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4419365244389273558, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
@@ -26290,11 +26290,6 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetErasing
-      objectReference: {fileID: 0}
-    - target: {fileID: 5625100692114264822, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -107
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead9afbadf061442a36e2d769f9db52, type: 3}
