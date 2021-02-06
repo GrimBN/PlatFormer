@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 139.1, y: -0.0015249}
-  m_SizeDelta: {x: 291.2, y: 118.8}
+  m_AnchoredPosition: {x: 119.47, y: 0}
+  m_SizeDelta: {x: 238.95, y: 118.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2039812506
 CanvasRenderer:
@@ -99,21 +99,21 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931312474682175285}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 2039812504}
   - {fileID: 7119016242497084296}
   - {fileID: 7119016240780694986}
   - {fileID: 7119016242279025128}
-  m_Father: {fileID: 2596132314527668429}
-  m_RootOrder: 1
+  m_Father: {fileID: 768044188185732592}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200.6, y: -86.375}
-  m_SizeDelta: {x: 401.4, y: 118.8}
+  m_AnchoredPosition: {x: 194.6, y: -59.35002}
+  m_SizeDelta: {x: 356.5, y: 118.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3879220604629427336
 CanvasRenderer:
@@ -154,7 +154,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 8514886641587371214}
-  - {fileID: 6288065859547325933}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -259,8 +258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 139.2002, y: -86.375}
-  m_SizeDelta: {x: 278.5, y: 118.7}
+  m_AnchoredPosition: {x: 118.7, y: -86.375}
+  m_SizeDelta: {x: 237.6, y: 118.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5962116831973737371
 CanvasRenderer:
@@ -282,9 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c88fd058b4ccf44f9604dfd14817bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxXMultiplier: -0.043
   lerpValue: 0.15
-  toolbarParentObject: {fileID: 931312474682175285}
 --- !u!114 &925008853447286949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,8 +380,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 199.4, y: 0}
-  m_SizeDelta: {x: 104.3, y: 106.6}
+  m_AnchoredPosition: {x: 182, y: 0}
+  m_SizeDelta: {x: 113.9, y: 118.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7119016240780694985
 CanvasRenderer:
@@ -537,8 +534,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 72.9, y: -0}
-  m_SizeDelta: {x: 106.4, y: 106.7}
+  m_AnchoredPosition: {x: 63.2, y: 0}
+  m_SizeDelta: {x: 112.8, y: 118.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7119016242279025135
 CanvasRenderer:
@@ -669,8 +666,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 199.4, y: 0}
-  m_SizeDelta: {x: 104.3, y: 112.8}
+  m_AnchoredPosition: {x: 182, y: 0}
+  m_SizeDelta: {x: 113.9, y: 118.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7119016242497084299
 CanvasRenderer:
@@ -817,7 +814,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6288065859547325933}
   m_Father: {fileID: 8514886641587371214}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -909,28 +907,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4880225771841572120}
         m_MethodName: StartSliderCoroutine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: FlipLevelControlToolbarOpenStatus
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ToggleTheToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
