@@ -3037,6 +3037,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mode and Character controller
       objectReference: {fileID: 0}
+    - target: {fileID: 2951605027017202631, guid: ef448692903f7734e84f7bca57c0327a,
+        type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2951605027017202632, guid: ef448692903f7734e84f7bca57c0327a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3091,11 +3096,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2951605027017202631, guid: ef448692903f7734e84f7bca57c0327a,
-        type: 3}
-      propertyPath: mode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef448692903f7734e84f7bca57c0327a, type: 3}
@@ -35887,51 +35887,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toolbar Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: blockingCollider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: toolbarParentObject
-      value: 
-      objectReference: {fileID: 1447614454}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: minColliderXValue
-      value: 11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: maxColliderXValue
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: minObjectXValue
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: maxObjectXValue
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: minXMultiplier
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: timeToOpenOrClose
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1567043837296121902, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4419365244389273558, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36056,16 +36011,56 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1147809032}
-    - target: {fileID: 4419365243123175670, guid: 4ead9afbadf061442a36e2d769f9db52,
+    - target: {fileID: 5046728656603560791, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1147809032}
-    - target: {fileID: 4419365243785568677, guid: 4ead9afbadf061442a36e2d769f9db52,
+    - target: {fileID: 669559740662126300, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1147809032}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: blockingCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: toolbarParentObject
+      value: 
+      objectReference: {fileID: 1447614454}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: minColliderXValue
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: maxColliderXValue
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: minObjectXValue
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: maxObjectXValue
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: minXMultiplier
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551020742408993283, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: timeToOpenOrClose
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 1550829767954208702, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -36091,21 +36086,26 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1567043837296121902, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419365243123175670, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1147809032}
+    - target: {fileID: 4419365243785568677, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1147809032}
     - target: {fileID: 8448595940064196016, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5046728656603560791, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1147809032}
-    - target: {fileID: 669559740662126300, guid: 4ead9afbadf061442a36e2d769f9db52,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1147809032}
     - target: {fileID: 4419365243123175560, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: m_IsActive
@@ -36543,14 +36543,19 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4880225771841572120, guid: e919586ff2623e9428cdfbf85d962b9c,
-        type: 3}
-      propertyPath: blockingCollider
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 768044188185732592, guid: e919586ff2623e9428cdfbf85d962b9c,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 768044188185732592, guid: e919586ff2623e9428cdfbf85d962b9c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 768044188185732592, guid: e919586ff2623e9428cdfbf85d962b9c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7119016242497084277, guid: e919586ff2623e9428cdfbf85d962b9c,
@@ -36572,6 +36577,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880225771841572120, guid: e919586ff2623e9428cdfbf85d962b9c,
+        type: 3}
+      propertyPath: blockingCollider
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e919586ff2623e9428cdfbf85d962b9c, type: 3}

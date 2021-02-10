@@ -13,7 +13,7 @@ public class TilePlacer : MonoBehaviour
     bool isDrawingToolbarOpen = false;
     bool isLevelControlToolbarOpen = false;
     Touch touch;
-    bool usingBoxSelect = false;    
+    bool usingBoxSelect = true;    
     [SerializeField] float pixelSizeMultiplier = 64f;    
     int tileCount = 0;
     Vector3Int INVALID_POS = new Vector3Int(0, 0, -1); // Treat as a constant
@@ -106,7 +106,7 @@ public class TilePlacer : MonoBehaviour
     }
 
     private bool ValidPosition(Vector2 posToValidate)
-    {
+    {        
         return !(RectTransformUtility.RectangleContainsScreenPoint(toolbarBackground, posToValidate) || RectTransformUtility.RectangleContainsScreenPoint(levelControlBackground, posToValidate));
     }
 

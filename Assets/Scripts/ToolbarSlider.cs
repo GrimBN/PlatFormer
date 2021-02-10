@@ -15,6 +15,7 @@ public class ToolbarSlider : MonoBehaviour
         flippedArrowSprite = Resources.Load<Sprite>("FlippedArrow");
         childArrowImage = gameObject.GetComponentInChildren<Image>();
         slider = GetComponent<Slider>();
+        childArrowImage.overrideSprite = slider.value == 0 ? flippedArrowSprite : null;
     }
 
     public void StartSliderCoroutine()
