@@ -12,6 +12,7 @@ public class LevelController : MonoBehaviour
     bool isPlaying = false;
     bool hasWon = false;
     bool hasLost = false;
+    bool speedup = false;
     int starCount = 0;
     const int MAX_STAR_COUNT = 3;
     float timer = 0f;
@@ -190,6 +191,14 @@ public class LevelController : MonoBehaviour
                 platform.SetIsPlaying(true);
                 platformCoroutines.Add(StartCoroutine(platform.MovePlatform()));                
             }
+            if(speedup)
+            {
+                Time.timeScale = 2f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
         }
     }
 
@@ -215,7 +224,8 @@ public class LevelController : MonoBehaviour
     }
 
     public void Win()
-    {        
+    {
+        Time.timeScale = 1f;
         hasWon = true;
         isPlaying = false;
         if ( gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
@@ -249,6 +259,7 @@ public class LevelController : MonoBehaviour
 
     public void Lose()
     {
+        Time.timeScale = 1f;
         hasLost = true;
         isPlaying = false;
         loseLabel.SetActive(true);
@@ -257,6 +268,7 @@ public class LevelController : MonoBehaviour
 
     public void ReloadLevel()
     {
+        Time.timeScale = 1f;
         Destroy(characterInstance.gameObject);
         InstantiateCharacter();
         AssignPlayingAndDrivenCam();
@@ -274,6 +286,19 @@ public class LevelController : MonoBehaviour
         ResetMovingPlatforms();
 
         tilePlacer.gameObject.SetActive(true);
+    }
+
+    public void SetSpeedup(bool value)
+    {
+        speedup = value;
+        if(isPlaying && speedup)
+        {
+            Time.timeScale = 2f;
+        }
+        else if(isPlaying && !speedup)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private void ResetStars()
