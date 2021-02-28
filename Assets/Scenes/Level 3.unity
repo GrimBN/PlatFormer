@@ -2652,6 +2652,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2047532017}
+    - target: {fileID: 1818414191, guid: e919586ff2623e9428cdfbf85d962b9c, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1258664425}
+    - target: {fileID: 1818414191, guid: e919586ff2623e9428cdfbf85d962b9c, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSpeedup
+      objectReference: {fileID: 0}
     - target: {fileID: 2596132314527668466, guid: e919586ff2623e9428cdfbf85d962b9c,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

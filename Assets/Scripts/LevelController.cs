@@ -6,8 +6,7 @@ using TMPro;
 //using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
-{    
-    //TODO : Add text indicators about alternate mode unlock requirements and moment of unlock
+{        
     //Parameters
     bool isPlaying = false;
     bool hasWon = false;

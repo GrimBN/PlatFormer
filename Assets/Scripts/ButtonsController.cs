@@ -21,7 +21,7 @@ public class ButtonsController : MonoBehaviour
             modeAlternateButton.interactable = gameDataController.GetAlternateUnlockedStatus();
             if(!modeAlternateButton.interactable)
             {
-                modeAlternateButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Needs " + Constants.ALTERNATE_UNLOCK_STARS + " stars";
+                modeAlternateButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Locked";
             }
         }        
     }

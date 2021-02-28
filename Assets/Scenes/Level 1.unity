@@ -11278,7 +11278,7 @@ PrefabInstance:
     - target: {fileID: 3414230711773514089, guid: 9694bbed3072dcc4f862a45a36a78ab1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3414230711773514089, guid: 9694bbed3072dcc4f862a45a36a78ab1,
         type: 3}
@@ -12071,6 +12071,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4419365244389273558, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419365244389273558, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419365244389273558, guid: 4ead9afbadf061442a36e2d769f9db52,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1439825651116741355, guid: 4ead9afbadf061442a36e2d769f9db52,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -12366,6 +12381,21 @@ PrefabInstance:
     - target: {fileID: 2596132314527668429, guid: e919586ff2623e9428cdfbf85d962b9c,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596132314527668429, guid: e919586ff2623e9428cdfbf85d962b9c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596132314527668429, guid: e919586ff2623e9428cdfbf85d962b9c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596132314527668429, guid: e919586ff2623e9428cdfbf85d962b9c,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 768044188185732592, guid: e919586ff2623e9428cdfbf85d962b9c,
