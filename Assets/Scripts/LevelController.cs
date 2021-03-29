@@ -336,4 +336,15 @@ public class LevelController : MonoBehaviour
                                     //different Counts for the two lists used in the for loop and also retains redundant coroutines in the list 
                                     //clogging up the memory
     }
+
+    public void SetUnlockTextActive()
+    {
+        var texts = winLabel.GetComponentsInChildren<TextMeshProUGUI>(true);
+        
+        foreach(TextMeshProUGUI text in texts)
+        {
+            Debug.Log(text);
+            text.gameObject.SetActive(true);
+        }
+    }
 }

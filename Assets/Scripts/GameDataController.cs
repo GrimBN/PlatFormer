@@ -118,7 +118,8 @@ public class GameDataController : MonoBehaviour
 
         if (totalStars >= Constants.ALTERNATE_UNLOCK_STARS)
         {
-            alternateUnlockedStatus = true;            
+            alternateUnlockedStatus = true;
+            FindObjectOfType<LevelController>().SetUnlockTextActive();
         }
     }
 
@@ -127,6 +128,14 @@ public class GameDataController : MonoBehaviour
         if(Input.GetAxis("ZoomIn") > 0 && Input.GetAxis("ZoomOut") > 0 && Input.GetKeyDown(KeyCode.K))
         {
             File.Delete(Application.persistentDataPath + "/Save.sav");
+        }
+        if (Input.GetAxis("ZoomIn") > 0 && Input.GetAxis("ZoomOut") > 0 && Input.GetKeyDown(KeyCode.J))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                normalStarsCollected[i] = 3;
+                alternateStarsCollected[i] = 3;
+            }
         }
     }*/
 
