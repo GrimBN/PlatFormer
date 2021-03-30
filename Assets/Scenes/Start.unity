@@ -4602,6 +4602,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1360430103, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1625049703}
+    - target: {fileID: 1360430103, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7434137159133877150}
+    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1850281215}
+    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7434137159133877150}
     - target: {fileID: 4586052785159767079, guid: fd8d71cf6a560a14a81012278561c2d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4707,79 +4723,19 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1360430103, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1625049703}
-    - target: {fileID: 1360430103, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 7434137159133877150}
-    - target: {fileID: 1360430103, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1850281215}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 7434137159133877150}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadLevelSelectScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048656546, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetAlternateMode
-      objectReference: {fileID: 0}
     - target: {fileID: 4586052785363480509, guid: fd8d71cf6a560a14a81012278561c2d7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7434137159133877150}
     - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1850281215}
     - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 7434137159133877150}
-    - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadLevelSelectScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 281501234, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetNormalGameMode
-      objectReference: {fileID: 0}
     - target: {fileID: 2036620767, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4788,16 +4744,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 7434137159133877150}
-    - target: {fileID: 4586052785648520839, guid: fd8d71cf6a560a14a81012278561c2d7,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -165
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586052785363480511, guid: fd8d71cf6a560a14a81012278561c2d7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd8d71cf6a560a14a81012278561c2d7, type: 3}
 --- !u!1001 &7434137159133877149

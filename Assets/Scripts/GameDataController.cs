@@ -111,12 +111,12 @@ public class GameDataController : MonoBehaviour
             totalStars += normalStarsCollected[i];
         }        
 
-        if (totalStars >= Constants.TUM_UNLOCK_STARS)
+        if (totalStars >= Constants.TUM_UNLOCK_STARS && !tumUnlockedStatus)
         {
             tumUnlockedStatus = true;            
         }
 
-        if (totalStars >= Constants.ALTERNATE_UNLOCK_STARS)
+        if (totalStars >= Constants.ALTERNATE_UNLOCK_STARS && !alternateUnlockedStatus)
         {
             alternateUnlockedStatus = true;
             FindObjectOfType<LevelController>().SetUnlockTextActive();

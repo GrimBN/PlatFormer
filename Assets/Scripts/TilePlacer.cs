@@ -32,7 +32,8 @@ public class TilePlacer : MonoBehaviour
     RectDraw rectDraw;
 
     private void Start()
-    {        
+    {
+        Input.simulateMouseWithTouches = false;
         validAreaCollider = GetComponent<CompositeCollider2D>();
         rectDraw = FindObjectOfType<RectDraw>();
         fixedForegroundTilemap = GameObject.FindGameObjectWithTag("Fixed Foreground").GetComponent<Tilemap>();
@@ -112,73 +113,96 @@ public class TilePlacer : MonoBehaviour
 
     private IEnumerator BoxSelect()                                                         // REMEMBER TO CHANGE THE INPUT BACK TO MOBILE BEFORE BUILDING
     {
-        //Vector3Int tilePosNew = GetTilePos(touch.position);         //mobile input
-        Vector3Int tilePosNew = GetClickPos();                    //PC input
+        Vector3Int tilePosNew;
+        tilePosNew = GetClickPos();                    //PC input
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            tilePosNew = GetTilePos(touch.position);         //mobile input
+        }        
+
         Vector3Int tilePosOld = new Vector3Int(tilePosNew.x, tilePosNew.y, tilePosNew.z);
-        Vector3Int tilePosStart = new Vector3Int(tilePosNew.x, tilePosNew.y, tilePosNew.z);
-        Vector3 yDiff = new Vector3(0, pixelSizeMultiplier, 0);
-        Vector3 xDiff = new Vector3(pixelSizeMultiplier, 0, 0);
+        Vector3Int tilePosStart = new Vector3Int(tilePosNew.x, tilePosNew.y, tilePosNew.z);       
         box.x = 0;
         box.y = 0;
         box.width = pixelSizeMultiplier;
         box.height = pixelSizeMultiplier;
         rectDraw.gameObject.transform.position = new Vector3(tilePosNew.x, tilePosNew.y, 0);
-        rectDraw.DrawRect(box);
+        rectDraw.DrawRect(box);        
 
-        while (Input.GetButton("Fire1"))
-        //while (touch.phase != TouchPhase.Ended)
+        if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            //if (touch.phase == TouchPhase.Moved)    //comment this line when testing using PC input
+            while (Input.GetButton("Fire1"))
             {
-                tilePosNew = GetClickPos();           //PC
-                //tilePosNew = GetTilePos(touch.position);  //mobile
-                if (tilePosNew != tilePosOld)
+                //if (touch.phase == TouchPhase.Moved)    //comment this line when testing using PC input
                 {
-                    //calculating change in width of box
-                    if (tilePosNew.x > tilePosStart.x)  // position of object remains same and only width needs to change
-                    {
-                        box.width = (tilePosNew.x - tilePosStart.x + 1) * pixelSizeMultiplier;
-                    }
-                    else if (tilePosNew.x < tilePosStart.x)  // position of object is shifted instead of the x origin of the Rect to be drawn because this actually worked
-                    {
-                        box.width = (tilePosStart.x - tilePosNew.x + 1) * pixelSizeMultiplier;
-                        rectDraw.gameObject.transform.position = new Vector3(tilePosNew.x, rectDraw.gameObject.transform.position.y, 0);
-                    }
-                    else if (tilePosNew.x == tilePosStart.x) // reset width and x position of object
-                    {
-                        box.width = pixelSizeMultiplier;
-                        rectDraw.gameObject.transform.position = new Vector3(tilePosStart.x, rectDraw.gameObject.transform.position.y, 0);
-                    }
-
-                    //calculating change in height of box
-                    if (tilePosNew.y > tilePosStart.y)  // position of object remains same and only height needs to change
-                    {
-                        box.height = (tilePosNew.y - tilePosStart.y + 1) * pixelSizeMultiplier;
-                    }
-                    else if (tilePosNew.y < tilePosStart.y) // position of object is shifted instead of the y origin of the Rect to be drawn because this actually worked
-                    {
-                        box.height = (tilePosStart.y - tilePosNew.y + 1) * pixelSizeMultiplier;
-                        rectDraw.gameObject.transform.position = new Vector3(rectDraw.gameObject.transform.position.x, tilePosNew.y, 0);
-                    }
-                    else if (tilePosNew.y == tilePosStart.y)    // reset height and y position of object
-                    {
-                        box.height = pixelSizeMultiplier;
-                        rectDraw.gameObject.transform.position = new Vector3(rectDraw.gameObject.transform.position.x, tilePosStart.y, 0);
-                    }
-                    rectDraw.DrawRect(box);
-                    tilePosOld = tilePosNew;
+                    tilePosNew = GetClickPos();           //PC                
+                                                          //tilePosNew = GetTilePos(touch.position);  //mobile
+                    CalcBoxShape(tilePosNew, ref tilePosOld, ref tilePosStart);
                 }
-                if(touch.phase == TouchPhase.Canceled)
-                {
-                    break;
-                }
+                yield return null;
             }
-            yield return null;
+        }
+
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            while (touch.phase != TouchPhase.Ended)
+            {
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    tilePosNew = GetTilePos(touch.position);
+                    CalcBoxShape(tilePosNew, ref tilePosOld, ref tilePosStart);
+                    if (touch.phase == TouchPhase.Canceled)
+                    {
+                        break;
+                    }
+                }
+                yield return null;
+            }
         }
 
         BoxFillOrErase();
         rectDraw.ClearSprite();
         isBoxSelectCoroutineRunning = false;
+    }
+
+    private void CalcBoxShape(Vector3Int tilePosNew, ref Vector3Int tilePosOld, ref Vector3Int tilePosStart)
+    {
+        if (tilePosNew != tilePosOld)
+        {
+            //calculating change in width of box
+            if (tilePosNew.x > tilePosStart.x)  // position of object remains same and only width needs to change
+            {
+                box.width = (tilePosNew.x - tilePosStart.x + 1) * pixelSizeMultiplier;
+            }
+            else if (tilePosNew.x < tilePosStart.x)  // position of object is shifted instead of the x origin of the Rect to be drawn because this actually worked
+            {
+                box.width = (tilePosStart.x - tilePosNew.x + 1) * pixelSizeMultiplier;
+                rectDraw.gameObject.transform.position = new Vector3(tilePosNew.x, rectDraw.gameObject.transform.position.y, 0);
+            }
+            else if (tilePosNew.x == tilePosStart.x) // reset width and x position of object
+            {
+                box.width = pixelSizeMultiplier;
+                rectDraw.gameObject.transform.position = new Vector3(tilePosStart.x, rectDraw.gameObject.transform.position.y, 0);
+            }
+
+            //calculating change in height of box
+            if (tilePosNew.y > tilePosStart.y)  // position of object remains same and only height needs to change
+            {
+                box.height = (tilePosNew.y - tilePosStart.y + 1) * pixelSizeMultiplier;
+            }
+            else if (tilePosNew.y < tilePosStart.y) // position of object is shifted instead of the y origin of the Rect to be drawn because this actually worked
+            {
+                box.height = (tilePosStart.y - tilePosNew.y + 1) * pixelSizeMultiplier;
+                rectDraw.gameObject.transform.position = new Vector3(rectDraw.gameObject.transform.position.x, tilePosNew.y, 0);
+            }
+            else if (tilePosNew.y == tilePosStart.y)    // reset height and y position of object
+            {
+                box.height = pixelSizeMultiplier;
+                rectDraw.gameObject.transform.position = new Vector3(rectDraw.gameObject.transform.position.x, tilePosStart.y, 0);
+            }
+            rectDraw.DrawRect(box);
+            tilePosOld = tilePosNew;
+        }
     }
 
     private void BoxFillOrErase()
