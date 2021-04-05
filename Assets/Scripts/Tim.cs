@@ -59,17 +59,7 @@ public class Tim : MonoBehaviour
         else if(collision.gameObject.tag == "Goal" && isAlive && !hasWon)
         {
             HandleWin();
-        }
-        /*else if(feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Spring")))
-        {           
-            var spring = collision.gameObject.GetComponent<Spring>();
-            if (spring != null)
-            {
-                Debug.Log("SPRUNG");
-                spring.Bounce(timRigidbody2D);
-            }
-            OnSpring();
-        }*/
+        }        
     }    
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -88,7 +78,7 @@ public class Tim : MonoBehaviour
     {
         isPlaying = false;
         hasWon = true;
-        timRigidbody2D.velocity = new Vector2(0f, 0f);// timRigidbody2D.velocity.y);
+        timRigidbody2D.velocity = new Vector2(0f, 0f);
         timRigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("isRunning", false);
         levelController.Win();
@@ -122,9 +112,8 @@ public class Tim : MonoBehaviour
     {   
         if (!feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) && !feetCollider2D.IsTouchingLayers(LayerMask.GetMask("Boundary")) && isAlive)
         {            
-            timRigidbody2D.velocity = new Vector2(timRigidbody2D.velocity.x, jumpSpeed);//Mathf.Max(timRigidbody2D.velocity.y + jumpSpeed, jumpSpeed));
-            animator.SetTrigger("Jump");            
-            //animator.SetBool("isRunning", false);            
+            timRigidbody2D.velocity = new Vector2(timRigidbody2D.velocity.x, jumpSpeed);
+            animator.SetTrigger("Jump");                       
             audioSource.PlayOneShot(jumpSFX, volume/2);
         }
     }   

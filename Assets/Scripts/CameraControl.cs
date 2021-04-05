@@ -14,16 +14,14 @@ public class CameraControl : MonoBehaviour
     CinemachineVirtualCamera vCam;
     [SerializeField] CinemachineVirtualCamera playingCam;
     CinemachineConfiner confiner;
-    //[SerializeField] PolygonCollider2D cameraConfiner;
-    //[SerializeField] Text text;
+
 
     void Start()
     {
         Input.simulateMouseWithTouches = false;
         tilePlacer = FindObjectOfType<TilePlacer>();
         vCam = GetComponent<CinemachineVirtualCamera>();        
-        confiner = GetComponent<CinemachineConfiner>();
-        //text.text = zoomSpeed.ToString();                
+        confiner = GetComponent<CinemachineConfiner>();               
         maxSize = Mathf.Min(confiner.m_BoundingShape2D.bounds.extents.y , confiner.m_BoundingShape2D.bounds.extents.x * (1 / Camera.main.aspect)) * 0.99f;        
         if (vCam != null && confiner != null)
         {
@@ -128,7 +126,7 @@ public class CameraControl : MonoBehaviour
             }
         }
     
-        if(Mathf.Abs(Input.mouseScrollDelta.y) > 0)// && vCam.m_Lens.OrthographicSize < maxSize && vCam.m_Lens.OrthographicSize > minSize)
+        if(Mathf.Abs(Input.mouseScrollDelta.y) > 0)
         {
             float newCameraSize = vCam.m_Lens.OrthographicSize - (Input.mouseScrollDelta.y * mouseZoomSpeed);
             if (newCameraSize < maxSize && newCameraSize > minSize)
@@ -164,6 +162,5 @@ public class CameraControl : MonoBehaviour
     public void SetZoomSpeed (float value)
     {
         zoomSpeed = value;
-        //text.text = zoomSpeed.ToString();
     }
 }

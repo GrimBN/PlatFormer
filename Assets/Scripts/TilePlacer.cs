@@ -111,13 +111,13 @@ public class TilePlacer : MonoBehaviour
         return !(RectTransformUtility.RectangleContainsScreenPoint(toolbarBackground, posToValidate) || RectTransformUtility.RectangleContainsScreenPoint(levelControlBackground, posToValidate));
     }
 
-    private IEnumerator BoxSelect()                                                         // REMEMBER TO CHANGE THE INPUT BACK TO MOBILE BEFORE BUILDING
+    private IEnumerator BoxSelect()
     {
         Vector3Int tilePosNew;
-        tilePosNew = GetClickPos();                    //PC input
+        tilePosNew = GetClickPos();
         if (SystemInfo.deviceType == DeviceType.Handheld)
         {
-            tilePosNew = GetTilePos(touch.position);         //mobile input
+            tilePosNew = GetTilePos(touch.position);
         }        
 
         Vector3Int tilePosOld = new Vector3Int(tilePosNew.x, tilePosNew.y, tilePosNew.z);
@@ -133,12 +133,9 @@ public class TilePlacer : MonoBehaviour
         {
             while (Input.GetButton("Fire1"))
             {
-                //if (touch.phase == TouchPhase.Moved)    //comment this line when testing using PC input
-                {
-                    tilePosNew = GetClickPos();           //PC                
-                                                          //tilePosNew = GetTilePos(touch.position);  //mobile
-                    CalcBoxShape(tilePosNew, ref tilePosOld, ref tilePosStart);
-                }
+                
+                tilePosNew = GetClickPos();                                                                                  
+                CalcBoxShape(tilePosNew, ref tilePosOld, ref tilePosStart);                
                 yield return null;
             }
         }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using TMPro;
-//using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {        
@@ -57,8 +56,6 @@ public class LevelController : MonoBehaviour
     private void FindObjectReferences()
     {
         tilePlacer = FindObjectOfType<TilePlacer>();
-        /*characterInstance = FindObjectOfType<Tim>();
-        characterInitialPos = characterInstance.transform.position;*/
         gameMode = FindObjectOfType<GameMode>();
         foreGroundTilemap = GameObject.FindGameObjectWithTag("Drawing Tilemap").GetComponent<Collider2D>();
         levelLoader = FindObjectOfType<LevelLoader>();
@@ -132,14 +129,6 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        /*if(Input.GetButtonDown("Jump"))
-        {
-            PlayLevel();
-        }
-        else if(Input.GetButtonDown("Cancel"))
-        {
-            ReloadLevel();
-        }*/
         AlternateModeTimerUpdate();
     }
 
@@ -178,12 +167,6 @@ public class LevelController : MonoBehaviour
             foreGroundTilemap.enabled = false;          //The level's drawable tilemap sometimes has botched collision, this is an attempt at a fix
             foreGroundTilemap.enabled = true;
             timer = 0f;
-            /*if(timer != null)
-            {
-                Destroy(timer);
-            }
-
-            timer = new Timer();*/
 
             foreach(MovingPlatform platform in movingPlatforms)
             {
@@ -247,8 +230,7 @@ public class LevelController : MonoBehaviour
 
         var gameDataController = FindObjectOfType<GameDataController>();
         if(gameDataController != null)
-        {
-            //if (levelID > 0) gameDataController.UpdateData(levelID, starCount, gameMode);
+        {            
             gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, gameMode);            
         }
 
