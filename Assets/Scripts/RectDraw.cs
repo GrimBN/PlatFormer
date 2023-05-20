@@ -29,10 +29,10 @@ public class RectDraw : MonoBehaviour
 
     public void ClearSprite()
     {
-        spriteRenderer.sprite = null;
+        spriteRenderer.enabled = false;
     }
 
-    public void DrawRect(Rect box)
+    /* public void DrawRect(Rect box)
     {        
         AltCreateNewTexture(box);        
         if (spriteRenderer.sprite != null)
@@ -40,5 +40,20 @@ public class RectDraw : MonoBehaviour
             Destroy(spriteRenderer.sprite);
         }
         spriteRenderer.sprite = Sprite.Create(texture, box, Vector2.zero, pixelPerUnitValue);
+    }
+ */
+    public void DrawRect(Rect box)
+    {        
+        if(spriteRenderer.drawMode != SpriteDrawMode.Sliced)
+        {
+            spriteRenderer.drawMode = SpriteDrawMode.Sliced;
+        }
+
+        if(!spriteRenderer.enabled)
+        {
+            spriteRenderer.enabled = true;
+        }
+
+        spriteRenderer.size = box.size;
     }
 }

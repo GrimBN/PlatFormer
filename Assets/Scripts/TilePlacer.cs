@@ -124,8 +124,8 @@ public class TilePlacer : MonoBehaviour
         Vector3Int tilePosStart = new Vector3Int(tilePosNew.x, tilePosNew.y, tilePosNew.z);       
         box.x = 0;
         box.y = 0;
-        box.width = pixelSizeMultiplier;
-        box.height = pixelSizeMultiplier;
+        box.width = 1;
+        box.height = 1;
         rectDraw.gameObject.transform.position = new Vector3(tilePosNew.x, tilePosNew.y, 0);
         rectDraw.DrawRect(box);        
 
@@ -169,34 +169,35 @@ public class TilePlacer : MonoBehaviour
             //calculating change in width of box
             if (tilePosNew.x > tilePosStart.x)  // position of object remains same and only width needs to change
             {
-                box.width = (tilePosNew.x - tilePosStart.x + 1) * pixelSizeMultiplier;
+                box.width = (tilePosNew.x - tilePosStart.x + 1);// * pixelSizeMultiplier;
             }
             else if (tilePosNew.x < tilePosStart.x)  // position of object is shifted instead of the x origin of the Rect to be drawn because this actually worked
             {
-                box.width = (tilePosStart.x - tilePosNew.x + 1) * pixelSizeMultiplier;
+                box.width = (tilePosStart.x - tilePosNew.x + 1);// * pixelSizeMultiplier;
                 rectDraw.gameObject.transform.position = new Vector3(tilePosNew.x, rectDraw.gameObject.transform.position.y, 0);
             }
             else if (tilePosNew.x == tilePosStart.x) // reset width and x position of object
             {
-                box.width = pixelSizeMultiplier;
+                box.width = 1;//pixelSizeMultiplier;
                 rectDraw.gameObject.transform.position = new Vector3(tilePosStart.x, rectDraw.gameObject.transform.position.y, 0);
             }
 
             //calculating change in height of box
             if (tilePosNew.y > tilePosStart.y)  // position of object remains same and only height needs to change
             {
-                box.height = (tilePosNew.y - tilePosStart.y + 1) * pixelSizeMultiplier;
+                box.height = (tilePosNew.y - tilePosStart.y + 1);// * pixelSizeMultiplier;
             }
             else if (tilePosNew.y < tilePosStart.y) // position of object is shifted instead of the y origin of the Rect to be drawn because this actually worked
             {
-                box.height = (tilePosStart.y - tilePosNew.y + 1) * pixelSizeMultiplier;
+                box.height = (tilePosStart.y - tilePosNew.y + 1);// * pixelSizeMultiplier;
                 rectDraw.gameObject.transform.position = new Vector3(rectDraw.gameObject.transform.position.x, tilePosNew.y, 0);
             }
             else if (tilePosNew.y == tilePosStart.y)    // reset height and y position of object
             {
-                box.height = pixelSizeMultiplier;
+                box.height = 1;//pixelSizeMultiplier;
                 rectDraw.gameObject.transform.position = new Vector3(rectDraw.gameObject.transform.position.x, tilePosStart.y, 0);
             }
+
             rectDraw.DrawRect(box);
             tilePosOld = tilePosNew;
         }
@@ -205,7 +206,7 @@ public class TilePlacer : MonoBehaviour
     private void BoxFillOrErase()
     {
         Vector3Int boxLocationInInt = new Vector3Int(Mathf.RoundToInt(rectDraw.gameObject.transform.position.x), Mathf.RoundToInt(rectDraw.gameObject.transform.position.y), Mathf.RoundToInt(rectDraw.gameObject.transform.position.z));
-        Vector3Int boxSizeInInt = new Vector3Int(Mathf.RoundToInt(box.width / pixelSizeMultiplier), Mathf.RoundToInt(box.height / pixelSizeMultiplier), 1);
+        Vector3Int boxSizeInInt = new Vector3Int(Mathf.RoundToInt(box.width), Mathf.RoundToInt(box.height), 1);
         BoundsInt boxToFill = new BoundsInt(boxLocationInInt, boxSizeInInt);
 
         if (isDrawing)
