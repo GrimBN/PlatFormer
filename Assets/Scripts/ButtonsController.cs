@@ -5,45 +5,45 @@ using UnityEngine.UI;
 using TMPro;
 
 public class ButtonsController : MonoBehaviour
-{    
-    [SerializeField] Button modeTumButton;    
+{
+    [SerializeField] Button modeTumButton;
     [SerializeField] Button modeAlternateButton;
-    GameDataController gameDataController;
-    GameMode gameModeController;
+    //GameDataController gameDataController;
+    //GameMode gameModeController;
 
     void Start()
     {
-        gameDataController = FindObjectOfType<GameDataController>();
-        gameModeController = FindObjectOfType<GameMode>();
-        if(gameDataController != null)
+        //gameDataController = FindObjectOfType<GameDataController>();
+        //gameModeController = FindObjectOfType<GameMode>();
+        //if(gameDataController != null)
+        //{
+        modeTumButton.interactable = GameDataController.instance.GetTumUnlockedStatus();
+        modeAlternateButton.interactable = GameDataController.instance.GetAlternateUnlockedStatus();
+        if (!modeAlternateButton.interactable)
         {
-            modeTumButton.interactable = gameDataController.GetTumUnlockedStatus();
-            modeAlternateButton.interactable = gameDataController.GetAlternateUnlockedStatus();
-            if(!modeAlternateButton.interactable)
-            {
-                modeAlternateButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Locked";
-            }
-        }        
+            modeAlternateButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Locked";
+        }
+        //}        
     }
 
     public void SetNormalGameMode()
     {
-        gameModeController.SetModeNormal();
+        GameMode.instance.SetModeNormal();
     }
 
     public void SetAlternateMode()
     {
-        gameModeController.SetModeAlternate();
+        GameMode.instance.SetModeAlternate();
     }
 
     public void SetTimCharacter()
     {
-        gameModeController.SetCharacterTim();
+        GameMode.instance.SetCharacterTim();
     }
 
     public void SetTumCharacter()
     {
-        gameModeController.SetCharacterTum();
+        GameMode.instance.SetCharacterTum();
     }
 
 }

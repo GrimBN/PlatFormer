@@ -18,6 +18,8 @@ public class GameDataController : MonoBehaviour
     private bool alternateUnlockedStatus = false;
 
     private int[] normalStarsCollected, alternateStarsCollected;
+
+    public static GameDataController instance;
   
     void Awake()
     {
@@ -29,6 +31,7 @@ public class GameDataController : MonoBehaviour
         }
         else
         {
+            instance = this;
             DontDestroyOnLoad(this);
         }
         LoadData();
@@ -82,13 +85,13 @@ public class GameDataController : MonoBehaviour
         }
     }
 
-    public void UpdateData(int completedLevel, int starCount, GameMode gameMode)
+    public void UpdateData(int completedLevel, int starCount)
     {
-        if (gameMode.GetMode() == GameMode.Modes.Normal && starCount > normalStarsCollected[completedLevel - 1])
+        if (GameMode.instance.Mode == GameMode.Modes.Normal && starCount > normalStarsCollected[completedLevel - 1])
         {
             normalStarsCollected[completedLevel - 1] = starCount;
         }
-        else if (gameMode.GetMode() == GameMode.Modes.Alternate && starCount > alternateStarsCollected[completedLevel - 1])
+        else if (GameMode.instance.Mode == GameMode.Modes.Alternate && starCount > alternateStarsCollected[completedLevel - 1])
         {
             alternateStarsCollected[completedLevel - 1] = starCount;
         }

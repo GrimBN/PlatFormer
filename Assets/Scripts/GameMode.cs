@@ -14,8 +14,13 @@ public class GameMode : MonoBehaviour
         Tim, Tum
     }
 
-    [SerializeField] Modes mode = Modes.Normal;
-    [SerializeField] Character character = Character.Tim;
+    [SerializeField] private Modes mode = Modes.Normal;
+    [SerializeField] private Character character = Character.Tim;
+
+    public Modes Mode { get => mode; }
+    public Character p_Character { get => character; }
+
+    public static GameMode instance = null;
 
     private void Awake()
     {
@@ -27,6 +32,7 @@ public class GameMode : MonoBehaviour
         }
         else
         {
+            instance = this;
             DontDestroyOnLoad(this);
         }
     }
@@ -41,10 +47,10 @@ public class GameMode : MonoBehaviour
         mode = Modes.Alternate;
     }
 
-    public Modes GetMode()
+    /* public Modes GetMode()
     {
         return mode;
-    }
+    } */
 
     public void SetCharacterTim()
     {
@@ -56,8 +62,8 @@ public class GameMode : MonoBehaviour
         character = Character.Tum;
     }
 
-    public Character GetCharacter()
+    /* public Character GetCharacter()
     {
         return character;
-    }
+    } */
 }

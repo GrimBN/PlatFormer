@@ -15,8 +15,8 @@ public class BouncePad : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         launchTrigger = GetComponent<BoxCollider2D>();
-        GameMode mode = FindObjectOfType<GameMode>();
-        bounceSpeed = mode != null ? mode.GetCharacter() == GameMode.Character.Tim ? timBounceSpeed : tumBounceSpeed : timBounceSpeed;
+        //GameMode mode = FindObjectOfType<GameMode>();
+        bounceSpeed = GameMode.instance.p_Character == GameMode.Character.Tim ? timBounceSpeed : tumBounceSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -6,34 +6,33 @@ using UnityEngine.UI;
 public class LevelSelectController : MonoBehaviour
 {
     [SerializeField] private Button[] levels;
-    GameDataController gameDataController;
+    //GameDataController gameDataController;
 
     void Awake()
     {
-        gameDataController = FindObjectOfType<GameDataController>();
+        //gameDataController = FindObjectOfType<GameDataController>();
         levels = GetComponentsInChildren<Button>();
         ActivateLevels();
     }
 
     private void ActivateLevels()
     {
-        if (gameDataController != null)
+        if (GameDataController.instance != null)
         {
-            int[] normalStars = gameDataController.GetNormalStarsCollected(), alternateStars = gameDataController.GetAlternateStarsCollected();
+            int[] normalStars = GameDataController.instance.GetNormalStarsCollected(), alternateStars = GameDataController.instance.GetAlternateStarsCollected();
             
-            GameMode gameMode = FindObjectOfType<GameMode>();
-            for (int i = 0; i < gameDataController.GetLevelsUnlocked(); i++)
+            for (int i = 0; i < GameDataController.instance.GetLevelsUnlocked(); i++)
             {                
                 levels[i].interactable = true;
                 var stars = levels[i].GetComponentsInChildren<Image>(true);
-                if (gameMode.GetMode() == GameMode.Modes.Normal)
+                if (GameMode.instance.Mode == GameMode.Modes.Normal)
                 {
                     for (int j = 1; j <= normalStars[i]; j++)       //starting loop from 1 to 3 because the level button's image is also gotten by GetComponentsInChildren() above
                     {                        
                         stars[j].gameObject.SetActive(true);
                     }
                 }
-                else if(gameMode.GetMode() == GameMode.Modes.Alternate)
+                else if(GameMode.instance.Mode == GameMode.Modes.Alternate)
                 {
                     for (int j = 1; j <= alternateStars[i]; j++)
                     {

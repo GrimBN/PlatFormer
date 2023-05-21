@@ -1538,6 +1538,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cb5a6e325dbb7648bcf3a760add0bb4, type: 3}
+--- !u!1 &510223673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6820719721360698516, guid: 7cb5a6e325dbb7648bcf3a760add0bb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 510223672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2932,6 +2938,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cb5a6e325dbb7648bcf3a760add0bb4, type: 3}
+--- !u!1 &1121963035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6820719721360698516, guid: 7cb5a6e325dbb7648bcf3a760add0bb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1121963034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1147809032 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3672660878466527625, guid: 2a776a65f4d55af47bed9b8c92e98b8d,
@@ -11592,6 +11604,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cb5a6e325dbb7648bcf3a760add0bb4, type: 3}
+--- !u!1 &1821668462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6820719721360698516, guid: 7cb5a6e325dbb7648bcf3a760add0bb4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1821668461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1955129020 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4885562003496971430, guid: 99f80e75487c2b347857fa0cce9289fc,
@@ -11940,6 +11958,41 @@ PrefabInstance:
       propertyPath: playingCam
       value: 
       objectReference: {fileID: 63082716}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: tilePlacer
+      value: 
+      objectReference: {fileID: 1147809032}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: levelLoader
+      value: 
+      objectReference: {fileID: 2047532017}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: stars.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: foreGroundTilemap
+      value: 
+      objectReference: {fileID: 965933282}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: stars.Array.data[0]
+      value: 
+      objectReference: {fileID: 510223673}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: stars.Array.data[1]
+      value: 
+      objectReference: {fileID: 1121963035}
+    - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
+        type: 3}
+      propertyPath: stars.Array.data[2]
+      value: 
+      objectReference: {fileID: 1821668462}
     - target: {fileID: 2769478358811104721, guid: 1271b8681929e504fba483f0bcd092b7,
         type: 3}
       propertyPath: starImages.Array.data[0]

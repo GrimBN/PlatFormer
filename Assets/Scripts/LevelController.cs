@@ -25,14 +25,13 @@ public class LevelController : MonoBehaviour
     [SerializeField] Vector3 characterInitialPos;
 
     //Cached Object References
-    LevelLoader levelLoader;
-    TilePlacer tilePlacer;
+    [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private TilePlacer tilePlacer;
     Tim characterInstance;
-    GameObject[] stars;
-    MovingPlatform[] movingPlatforms;
+    [SerializeField] private GameObject[] stars;
+    [SerializeField] private MovingPlatform[] movingPlatforms;
     List<Coroutine> platformCoroutines = new List<Coroutine>();
-    GameMode gameMode;
-    Collider2D foreGroundTilemap;
+    [SerializeField] private Collider2D foreGroundTilemap;
     [SerializeField] GameObject winLabel;
     [SerializeField] GameObject loseLabel;
     [SerializeField] AudioClip winSFX;
@@ -46,7 +45,7 @@ public class LevelController : MonoBehaviour
 
     void Start()
     {
-        FindObjectReferences();
+        //FindObjectReferences();
         InstantiateCharacter();
         AssignPlayingAndDrivenCam();
         IdentifyGameMode();
@@ -56,17 +55,17 @@ public class LevelController : MonoBehaviour
     private void FindObjectReferences()
     {
         tilePlacer = FindObjectOfType<TilePlacer>();
-        gameMode = FindObjectOfType<GameMode>();
-        foreGroundTilemap = GameObject.FindGameObjectWithTag("Drawing Tilemap").GetComponent<Collider2D>();
+        //gameMode = FindObjectOfType<GameMode>();
+        //foreGroundTilemap = GameObject.FindGameObjectWithTag("Drawing Tilemap").GetComponent<Collider2D>();
         levelLoader = FindObjectOfType<LevelLoader>();
-        stars = GameObject.FindGameObjectsWithTag("Star");
-        movingPlatforms = GameObject.FindObjectsOfType<MovingPlatform>();             
+        //stars = GameObject.FindGameObjectsWithTag("Star");
+        movingPlatforms = FindObjectsOfType<MovingPlatform>();             
     }
 
     private void InstantiateCharacter()
     {
         //never do the following the way it has been done
-        characterInstance = Instantiate(gameMode != null ? gameMode.GetCharacter() == GameMode.Character.Tim ? timPrefab : tumPrefab : timPrefab, characterInitialPos, Quaternion.identity);
+        characterInstance = Instantiate(GameMode.instance.p_Character == GameMode.Character.Tim ? timPrefab : tumPrefab, characterInitialPos, Quaternion.identity);
     }
 
     private void AssignPlayingAndDrivenCam()
@@ -80,7 +79,7 @@ public class LevelController : MonoBehaviour
 
     private void IdentifyGameMode()
     {
-        if (gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
+        if (GameMode.instance.Mode == GameMode.Modes.Alternate)
         {
             blocksText.gameObject.SetActive(true);
             blocksLeft = blockCount;
@@ -210,7 +209,7 @@ public class LevelController : MonoBehaviour
         Time.timeScale = 1f;
         hasWon = true;
         isPlaying = false;
-        if ( gameMode != null && gameMode.GetMode() == GameMode.Modes.Alternate)
+        if ( GameMode.instance.Mode == GameMode.Modes.Alternate)
         {
             starImages[0].SetActive(true);
             starCount = 1;
@@ -228,10 +227,10 @@ public class LevelController : MonoBehaviour
 
         ResetMovingPlatforms(false);
 
-        var gameDataController = FindObjectOfType<GameDataController>();
-        if(gameDataController != null)
+        //var gameDataController = FindObjectOfType<GameDataController>();
+        if(GameDataController.instance != null)
         {            
-            gameDataController.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount, gameMode);            
+            GameDataController.instance.UpdateData(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, starCount);            
         }
 
         winLabel.SetActive(true);
@@ -260,7 +259,7 @@ public class LevelController : MonoBehaviour
             UpdateTimerText();
         }
 
-        if(gameMode.GetMode() == GameMode.Modes.Normal)
+        if(GameMode.instance.Mode == GameMode.Modes.Normal)
         {
             ResetStars();
         }
