@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class PlaceTileTutorialTracker : MonoBehaviour
 {
     [SerializeField] private Tilemap foregroundTilemap;
+    [SerializeField] private GameObject currentTutorialBox;
+    [SerializeField] private GameObject nextTutorialBox;
+    [SerializeField] private Button arrowButton;
+
 
     private void Start() 
     {
@@ -29,5 +35,25 @@ public class PlaceTileTutorialTracker : MonoBehaviour
         msg += syncTiles[4].position.ToString() + " - " + (syncTiles[4].tile != null);
 
         Debug.Log(msg);
+
+        bool allTilesPlaced = true;
+        for(int i = -10; i <= 6; i++ )
+        {
+            if( i > -5 && i < 0) {continue;}
+
+            Vector3Int pos = new Vector3Int(i, -6, 0); //Values of the restricted tile positions
+            if(!foregroundTilemap.HasTile(pos))
+            {
+                allTilesPlaced = false;
+            }
+
+        }
+        
+        if(allTilesPlaced)
+        {
+            currentTutorialBox.SetActive(false);
+            nextTutorialBox.SetActive(true);
+            arrowButton.interactable = true;
+        }
     }
 }
