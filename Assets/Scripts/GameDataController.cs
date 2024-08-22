@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public static class Constants
 {
@@ -13,6 +14,12 @@ public static class Constants
 
 public class GameDataController : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void SaveToLocalStorage(string str);
+
+    [DllImport("__Internal")]
+    private static extern string GetFromLocalStorage();
+
     private int levelsUnlocked;    
     private bool tumUnlockedStatus = false;
     private bool alternateUnlockedStatus = false;
@@ -38,9 +45,7 @@ public class GameDataController : MonoBehaviour
     }    
 
     private void SaveData()
-    {        
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/Save.sav");
+    {       
         GameData gameData = new GameData
         {
             levelsUnlocked = levelsUnlocked,
@@ -50,22 +55,29 @@ public class GameDataController : MonoBehaviour
             alternateUnlockedStatus = alternateUnlockedStatus
         };
 
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID
+        Debug.Log("Game Data Controller - Editor/Standalone Save Data");
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/Save.sav");        
         bf.Serialize(file, gameData);
-        file.Close();                
+        file.Close();     
+#elif !UNITY_EDITOR && UNITY_WEBGL
+
+        Debug.Log("Game Data Controller - WebGL Specific Save Data");
+        string jsonSaveData = JsonUtility.ToJson(gameData);
+
+        SaveToLocalStorage(jsonSaveData);
+#endif
     }
 
     public void LoadData()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID
+
+        Debug.Log("Game Data Controller - Editor/Standalone Load Data");
         if (!File.Exists(Application.persistentDataPath + "/Save.sav"))
         {
-            levelsUnlocked = 1;
-            normalStarsCollected = new int[20];
-            alternateStarsCollected = new int[20];
-            for(int i = 0; i < Constants.NUMBER_OF_LEVELS; i++)
-            {
-                normalStarsCollected[i] = 0;
-                alternateStarsCollected[i] = 0;
-            }
+            CreateNewSave();
             SaveData();
         }
 
@@ -82,6 +94,39 @@ public class GameDataController : MonoBehaviour
             
             tumUnlockedStatus = gameData.tumUnlockedStatus;
             alternateUnlockedStatus = gameData.alternateUnlockedStatus;
+        }
+#elif !UNITY_EDITOR && UNITY_WEBGL
+        
+        Debug.Log("Game Data Controller - WebGL Specific Load Data");
+        string jsonSaveData = GetFromLocalStorage();
+        if(jsonSaveData == string.Empty)
+        {
+            CreateNewSave();
+            SaveData();
+        }
+        else
+        {
+            GameData gameData = JsonUtility.FromJson<GameData>(jsonSaveData);
+
+            levelsUnlocked = gameData.levelsUnlocked;
+            normalStarsCollected = gameData.normalStarsCollected;
+            alternateStarsCollected = gameData.alternateStarsCollected;
+
+            tumUnlockedStatus = gameData.tumUnlockedStatus;
+            alternateUnlockedStatus = gameData.alternateUnlockedStatus;
+        }
+#endif
+    }
+
+    private void CreateNewSave()
+    {
+        levelsUnlocked = 1;
+        normalStarsCollected = new int[20];
+        alternateStarsCollected = new int[20];
+        for (int i = 0; i < Constants.NUMBER_OF_LEVELS; i++)
+        {
+            normalStarsCollected[i] = 0;
+            alternateStarsCollected[i] = 0;
         }
     }
 
