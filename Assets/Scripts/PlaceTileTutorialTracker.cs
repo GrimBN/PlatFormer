@@ -13,16 +13,21 @@ public class PlaceTileTutorialTracker : MonoBehaviour
     [SerializeField] private Button arrowButton;
 
 
-    private void Start() 
+    private void OnEnable() 
     {
         Tilemap.tilemapTileChanged += ForegroundTilemapChanged;
+    }
+
+    private void OnDisable() 
+    {
+        Tilemap.tilemapTileChanged -= ForegroundTilemapChanged;
     }
 
     //The TilePlacer.cs script uses SetTile() function even when multiple tiles are placed at once with the box draw tool
     //Therefore this callback is called for each tile that was placed/erased in a single box
     private void ForegroundTilemapChanged(Tilemap changedTilemap, Tilemap.SyncTile[] syncTiles)
     {
-        string msg = changedTilemap.name + ": ";
+        //string msg = changedTilemap.name + ": ";
 
         //The tile being used is a RuleTile which affecs all 8 adjecent tiles around it
         //That is why the returned SyncTile array has 9 elements in it, one for the center tile at index 4
@@ -31,10 +36,10 @@ public class PlaceTileTutorialTracker : MonoBehaviour
         {
             Debug.Log(tile.tile == null);
             msg += tile.position.ToString() + " ; "; 
-        } */
+        }
         msg += syncTiles[4].position.ToString() + " - " + (syncTiles[4].tile != null);
 
-        Debug.Log(msg);
+        Debug.Log(msg); */
 
         bool allTilesPlaced = true;
         for(int i = -10; i <= 6; i++ )

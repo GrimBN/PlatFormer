@@ -56,14 +56,12 @@ public class GameDataController : MonoBehaviour
         };
 
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID
-        Debug.Log("Game Data Controller - Editor/Standalone Save Data");
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/Save.sav");        
         bf.Serialize(file, gameData);
         file.Close();     
 #elif !UNITY_EDITOR && UNITY_WEBGL
 
-        Debug.Log("Game Data Controller - WebGL Specific Save Data");
         string jsonSaveData = JsonUtility.ToJson(gameData);
 
         SaveToLocalStorage(jsonSaveData);
@@ -73,8 +71,6 @@ public class GameDataController : MonoBehaviour
     public void LoadData()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID
-
-        Debug.Log("Game Data Controller - Editor/Standalone Load Data");
         if (!File.Exists(Application.persistentDataPath + "/Save.sav"))
         {
             CreateNewSave();
@@ -97,14 +93,8 @@ public class GameDataController : MonoBehaviour
         }
 #elif !UNITY_EDITOR && UNITY_WEBGL
         
-        Debug.Log("Game Data Controller - WebGL Specific Load Data");
         string jsonSaveData = GetFromLocalStorage();
-        if(jsonSaveData == string.Empty)
-        {
-            CreateNewSave();
-            SaveData();
-        }
-        else
+        if(jsonSaveData != null)
         {
             GameData gameData = JsonUtility.FromJson<GameData>(jsonSaveData);
 
@@ -114,6 +104,11 @@ public class GameDataController : MonoBehaviour
 
             tumUnlockedStatus = gameData.tumUnlockedStatus;
             alternateUnlockedStatus = gameData.alternateUnlockedStatus;
+        }
+        else
+        {
+            CreateNewSave();
+            SaveData();
         }
 #endif
     }
