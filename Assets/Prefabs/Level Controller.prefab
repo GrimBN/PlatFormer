@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1085097815193920390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5844923646234311962}
+  m_Layer: 0
+  m_Name: Start Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5844923646234311962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085097815193920390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: -4.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2769478358811104722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2769478358811104720
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,12 +55,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2769478358811104720}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5844923646234311962}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2769478358811104721
 MonoBehaviour:
@@ -48,9 +81,14 @@ MonoBehaviour:
   volume: 0.4
   timPrefab: {fileID: 2941564632871719225, guid: fd411339fbd93ac4ca654d28c1fd5722,
     type: 3}
-  tumPrefab: {fileID: 6922065233737970833, guid: bfe9d34a3af5e1846836b9852e6ddab2,
+  tumPrefab: {fileID: 6018182144199266264, guid: c4f2363fb93c31348ad83d3710f872b8,
     type: 3}
-  characterInitialPos: {x: -11, y: -3.5, z: 0}
+  characterInitialPos: {fileID: 5844923646234311962}
+  levelLoader: {fileID: 0}
+  tilePlacer: {fileID: 0}
+  stars: []
+  movingPlatforms: []
+  foreGroundTilemap: {fileID: 0}
   winLabel: {fileID: 0}
   loseLabel: {fileID: 0}
   winSFX: {fileID: 8300000, guid: 073c561c06c16e94aa8d25f710f88887, type: 3}

@@ -22,7 +22,7 @@ public class LevelController : MonoBehaviour
     //Cached Component References
     [SerializeField] Tim timPrefab;
     [SerializeField] Tim tumPrefab;
-    [SerializeField] Vector3 characterInitialPos;
+    [SerializeField] Transform characterInitialPos;
 
     //Cached Object References
     [SerializeField] private LevelLoader levelLoader;
@@ -65,7 +65,7 @@ public class LevelController : MonoBehaviour
     private void InstantiateCharacter()
     {
         //never do the following the way it has been done
-        characterInstance = Instantiate(GameMode.instance.p_Character == GameMode.Character.Tim ? timPrefab : tumPrefab, characterInitialPos, Quaternion.identity);
+        characterInstance = Instantiate(GameMode.instance.p_Character == GameMode.Character.Tim ? timPrefab : tumPrefab, characterInitialPos.position, Quaternion.identity);
     }
 
     private void AssignPlayingAndDrivenCam()
