@@ -1,12 +1,12 @@
 mergeInto(LibraryManager.library, {
 
   SaveToLocalStorage: function (str) {
-    localStorage.setItem("saveData", UTF8ToString(str));
+    localStorage.setItem("data_PlatFormer", UTF8ToString(str));
   },
 
   GetFromLocalStorage: function () {
 
-    var returnStr = localStorage.getItem("saveData");
+    var returnStr = localStorage.getItem("data_PlatFormer");
     if(!returnStr)
     {
         return null;
